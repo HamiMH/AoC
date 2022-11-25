@@ -1,0 +1,13 @@
+C:\Users\Hami\Documents\GitHub\AoC2021\AoC2021\Day11\bin\Release\netcoreapp3.1\Day11.exe
+C:\Users\Hami\Documents\GitHub\AoC2021\AoC2021\Day11\bin\Release\netcoreapp3.1\Day11.deps.json
+C:\Users\Hami\Documents\GitHub\AoC2021\AoC2021\Day11\bin\Release\netcoreapp3.1\Day11.runtimeconfig.json
+C:\Users\Hami\Documents\GitHub\AoC2021\AoC2021\Day11\bin\Release\netcoreapp3.1\Day11.runtimeconfig.dev.json
+C:\Users\Hami\Documents\GitHub\AoC2021\AoC2021\Day11\bin\Release\netcoreapp3.1\Day11.dll
+C:\Users\Hami\Documents\GitHub\AoC2021\AoC2021\Day11\bin\Release\netcoreapp3.1\Day11.pdb
+C:\Users\Hami\Documents\GitHub\AoC2021\AoC2021\Day11\obj\Release\netcoreapp3.1\Day11.csprojAssemblyReference.cache
+C:\Users\Hami\Documents\GitHub\AoC2021\AoC2021\Day11\obj\Release\netcoreapp3.1\Day11.AssemblyInfoInputs.cache
+C:\Users\Hami\Documents\GitHub\AoC2021\AoC2021\Day11\obj\Release\netcoreapp3.1\Day11.AssemblyInfo.cs
+C:\Users\Hami\Documents\GitHub\AoC2021\AoC2021\Day11\obj\Release\netcoreapp3.1\Day11.csproj.CoreCompileInputs.cache
+C:\Users\Hami\Documents\GitHub\AoC2021\AoC2021\Day11\obj\Release\netcoreapp3.1\Day11.dll
+C:\Users\Hami\Documents\GitHub\AoC2021\AoC2021\Day11\obj\Release\netcoreapp3.1\Day11.pdb
+C:\Users\Hami\Documents\GitHub\AoC2021\AoC2021\Day11\obj\Release\netcoreapp3.1\Day11.genruntimeconfig.cache

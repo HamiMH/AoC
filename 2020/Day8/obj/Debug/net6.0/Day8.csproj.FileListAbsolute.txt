@@ -1,0 +1,15 @@
+C:\Users\z004nz8k\Documents\AOC\2020\Days\Day8\bin\Debug\net6.0\Day8.exe
+C:\Users\z004nz8k\Documents\AOC\2020\Days\Day8\bin\Debug\net6.0\Day8.deps.json
+C:\Users\z004nz8k\Documents\AOC\2020\Days\Day8\bin\Debug\net6.0\Day8.runtimeconfig.json
+C:\Users\z004nz8k\Documents\AOC\2020\Days\Day8\bin\Debug\net6.0\Day8.dll
+C:\Users\z004nz8k\Documents\AOC\2020\Days\Day8\bin\Debug\net6.0\Day8.pdb
+C:\Users\z004nz8k\Documents\AOC\2020\Days\Day8\obj\Debug\net6.0\Day8.csproj.AssemblyReference.cache
+C:\Users\z004nz8k\Documents\AOC\2020\Days\Day8\obj\Debug\net6.0\Day8.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\z004nz8k\Documents\AOC\2020\Days\Day8\obj\Debug\net6.0\Day8.AssemblyInfoInputs.cache
+C:\Users\z004nz8k\Documents\AOC\2020\Days\Day8\obj\Debug\net6.0\Day8.AssemblyInfo.cs
+C:\Users\z004nz8k\Documents\AOC\2020\Days\Day8\obj\Debug\net6.0\Day8.csproj.CoreCompileInputs.cache
+C:\Users\z004nz8k\Documents\AOC\2020\Days\Day8\obj\Debug\net6.0\Day8.dll
+C:\Users\z004nz8k\Documents\AOC\2020\Days\Day8\obj\Debug\net6.0\refint\Day8.dll
+C:\Users\z004nz8k\Documents\AOC\2020\Days\Day8\obj\Debug\net6.0\Day8.pdb
+C:\Users\z004nz8k\Documents\AOC\2020\Days\Day8\obj\Debug\net6.0\Day8.genruntimeconfig.cache
+C:\Users\z004nz8k\Documents\AOC\2020\Days\Day8\obj\Debug\net6.0\ref\Day8.dll
