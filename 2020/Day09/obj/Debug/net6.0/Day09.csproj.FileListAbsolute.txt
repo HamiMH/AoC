@@ -1,0 +1,15 @@
+C:\Users\Hami\Documents\AOC\2020\Day09\bin\Debug\net6.0\Day09.exe
+C:\Users\Hami\Documents\AOC\2020\Day09\bin\Debug\net6.0\Day09.deps.json
+C:\Users\Hami\Documents\AOC\2020\Day09\bin\Debug\net6.0\Day09.runtimeconfig.json
+C:\Users\Hami\Documents\AOC\2020\Day09\bin\Debug\net6.0\Day09.dll
+C:\Users\Hami\Documents\AOC\2020\Day09\bin\Debug\net6.0\Day09.pdb
+C:\Users\Hami\Documents\AOC\2020\Day09\obj\Debug\net6.0\Day09.csproj.AssemblyReference.cache
+C:\Users\Hami\Documents\AOC\2020\Day09\obj\Debug\net6.0\Day09.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hami\Documents\AOC\2020\Day09\obj\Debug\net6.0\Day09.AssemblyInfoInputs.cache
+C:\Users\Hami\Documents\AOC\2020\Day09\obj\Debug\net6.0\Day09.AssemblyInfo.cs
+C:\Users\Hami\Documents\AOC\2020\Day09\obj\Debug\net6.0\Day09.csproj.CoreCompileInputs.cache
+C:\Users\Hami\Documents\AOC\2020\Day09\obj\Debug\net6.0\Day09.dll
+C:\Users\Hami\Documents\AOC\2020\Day09\obj\Debug\net6.0\refint\Day09.dll
+C:\Users\Hami\Documents\AOC\2020\Day09\obj\Debug\net6.0\Day09.pdb
+C:\Users\Hami\Documents\AOC\2020\Day09\obj\Debug\net6.0\Day09.genruntimeconfig.cache
+C:\Users\Hami\Documents\AOC\2020\Day09\obj\Debug\net6.0\ref\Day09.dll

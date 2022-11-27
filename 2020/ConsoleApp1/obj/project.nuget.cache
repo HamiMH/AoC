@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pHVVkroksir44RYlF62er4kHuLEZWNLj+Gz4J89O/G3zg3KoDFaFlolfs9FyHovhPFi0saH4oiAUQfaEzWR5lQ==",
+  "dgSpecHash": "H6q2wWTKAW2idurl/akxBb0zVLsZwh1TNdU2g0qYUY2m/sn3iGjqSrBnHw/6jXfpS1rccQrhbXW+6sQpS31sJg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\z004nz8k\\Documents\\AOC\\2020\\Days\\ConsoleApp1\\Day1.csproj",
+  "projectFilePath": "C:\\Users\\Hami\\Documents\\AOC\\2020\\ConsoleApp1\\Day01.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
