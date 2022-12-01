@@ -1,4 +1,5 @@
 ﻿
+using Day18;
 using System.Diagnostics;
 class Program
 {
@@ -32,7 +33,8 @@ class Program
         {
             tmpStr = str.Replace(" ", "");
             index = 0;
-            result+=CalculateLine(tmpStr, ref index);
+            //result+=CalculateLine(tmpStr, ref index);
+            result+=(new UltimateParser(tmpStr)).Calculate();
         }
        return result;
     }
