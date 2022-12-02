@@ -1,0 +1,15 @@
+C:\Users\z004nz8k\Documents\AOC\AoC\2022\Day03\bin\Debug\net6.0\Day03.exe
+C:\Users\z004nz8k\Documents\AOC\AoC\2022\Day03\bin\Debug\net6.0\Day03.deps.json
+C:\Users\z004nz8k\Documents\AOC\AoC\2022\Day03\bin\Debug\net6.0\Day03.runtimeconfig.json
+C:\Users\z004nz8k\Documents\AOC\AoC\2022\Day03\bin\Debug\net6.0\Day03.dll
+C:\Users\z004nz8k\Documents\AOC\AoC\2022\Day03\bin\Debug\net6.0\Day03.pdb
+C:\Users\z004nz8k\Documents\AOC\AoC\2022\Day03\obj\Debug\net6.0\Day03.csproj.AssemblyReference.cache
+C:\Users\z004nz8k\Documents\AOC\AoC\2022\Day03\obj\Debug\net6.0\Day03.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\z004nz8k\Documents\AOC\AoC\2022\Day03\obj\Debug\net6.0\Day03.AssemblyInfoInputs.cache
+C:\Users\z004nz8k\Documents\AOC\AoC\2022\Day03\obj\Debug\net6.0\Day03.AssemblyInfo.cs
+C:\Users\z004nz8k\Documents\AOC\AoC\2022\Day03\obj\Debug\net6.0\Day03.csproj.CoreCompileInputs.cache
+C:\Users\z004nz8k\Documents\AOC\AoC\2022\Day03\obj\Debug\net6.0\Day03.dll
+C:\Users\z004nz8k\Documents\AOC\AoC\2022\Day03\obj\Debug\net6.0\refint\Day03.dll
+C:\Users\z004nz8k\Documents\AOC\AoC\2022\Day03\obj\Debug\net6.0\Day03.pdb
+C:\Users\z004nz8k\Documents\AOC\AoC\2022\Day03\obj\Debug\net6.0\Day03.genruntimeconfig.cache
+C:\Users\z004nz8k\Documents\AOC\AoC\2022\Day03\obj\Debug\net6.0\ref\Day03.dll
