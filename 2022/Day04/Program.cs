@@ -29,15 +29,34 @@ class Program
 
     private static long GetResult1(List<string> inputCol)
     {
+        Assignment ass = new Assignment();
 
-        return 0;
+        long result = 0;    
+        foreach(string str in inputCol)
+        {
+            if(ass.IsOverlapping(str))
+                result++;
+
+        }
+
+        return result;
     }
 
 
     private static long GetResult2(List<string> inputCol)
     {
 
-        return 0;
+        Assignment ass = new Assignment();
+
+        long result = 0;
+        foreach (string str in inputCol)
+        {
+            if (ass.IsPartlyOverlapping(str))
+                result++;
+
+        }
+
+        return result;
     }
 
 
