@@ -19,8 +19,8 @@ class Program
         }
         Stopwatch sw = new Stopwatch();
         sw.Start();
-        //long result = GetResult1(inputCol);
-        long result = GetResult2(inputCol);
+        long result = GetResult1(inputCol);
+        //long result = GetResult2(inputCol);
         sw.Stop();
 
         Console.WriteLine(result);
