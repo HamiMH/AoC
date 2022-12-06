@@ -19,25 +19,26 @@ class Program
         }
         Stopwatch sw = new Stopwatch();
         sw.Start();
-        //long result = GetResult1(inputCol);
-        long result = GetResult2(inputCol);
+        //int result = GetResult1(inputCol);
+        int result = GetResult2(inputCol);
         sw.Stop();
 
         Console.WriteLine(result);
         Console.WriteLine("Time was: " + sw.ElapsedMilliseconds + " ms.");
     }
 
-    private static long GetResult1(List<string> inputCol)
+    private static int GetResult1(List<string> inputCol)
     {
-
-        return 0;
+        StreamProcessor sp = new StreamProcessor();
+        return sp.Process(inputCol.First());
     }
 
 
-    private static long GetResult2(List<string> inputCol)
+    private static int GetResult2(List<string> inputCol)
     {
 
-        return 0;
+        StreamProcessor sp = new StreamProcessor();
+        return sp.Process2(inputCol.First());
     }
 
 
