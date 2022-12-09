@@ -29,15 +29,24 @@ class Program
 
     private static long GetResult1(List<string> inputCol)
     {
+        HeadTailSimulator headTailSimulator = new HeadTailSimulator();
 
-        return 0;
+        foreach(string str in inputCol)
+            headTailSimulator.MakeMove(str);
+
+        return headTailSimulator.NofAttended(); ;
     }
 
 
     private static long GetResult2(List<string> inputCol)
     {
 
-        return 0;
+        SnakeSimulator headTailSimulator = new SnakeSimulator();
+
+        foreach (string str in inputCol)
+            headTailSimulator.MakeMove(str);
+
+        return headTailSimulator.NofAttended(); ;
     }
 
 

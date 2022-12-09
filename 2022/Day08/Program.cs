@@ -29,15 +29,18 @@ class Program
 
     private static long GetResult1(List<string> inputCol)
     {
+        TreeMap tm = new TreeMap(inputCol);
 
-        return 0;
+        return tm.TreeVisibility();
     }
 
 
     private static long GetResult2(List<string> inputCol)
     {
 
-        return 0;
+        TreeMap tm = new TreeMap(inputCol);
+
+        return tm.GetMaxViewScore();
     }
 
 
