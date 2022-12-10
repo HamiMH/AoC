@@ -19,25 +19,34 @@ class Program
         }
         Stopwatch sw = new Stopwatch();
         sw.Start();
-        //long result = GetResult1(inputCol);
-        long result = GetResult2(inputCol);
+        //int result = GetResult1(inputCol);
+        string result = GetResult2(inputCol);
         sw.Stop();
 
         Console.WriteLine(result);
         Console.WriteLine("Time was: " + sw.ElapsedMilliseconds + " ms.");
     }
 
-    private static long GetResult1(List<string> inputCol)
+    private static int GetResult1(List<string> inputCol)
     {
-
-        return 0;
+        Simulator sim = new Simulator();
+        foreach(string str in inputCol)
+        {
+            sim.ExecCommand(str);
+        }
+        return sim.GetTotalScore() ;
     }
 
 
-    private static long GetResult2(List<string> inputCol)
+    private static string GetResult2(List<string> inputCol)
     {
 
-        return 0;
+        Simulator sim = new Simulator();
+        foreach (string str in inputCol)
+        {
+            sim.ExecCommand(str);
+        }
+        return sim.GetRastr();
     }
 
 

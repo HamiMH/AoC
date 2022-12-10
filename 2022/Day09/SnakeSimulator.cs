@@ -35,7 +35,9 @@
 
     private bool MoveTail(int ind)
     {
-        SetDiff(ind);
+        _diff[0] = PositionSnake[ind - 1, 0] - PositionSnake[ind, 0];
+        _diff[1] = PositionSnake[ind - 1, 1] - PositionSnake[ind, 1];
+
         if (_diff[0] == 2 || _diff[0] == -2 || _diff[1] == 2 || _diff[1] == -2)
         {
             PositionSnake[ind, 0] += Sign(_diff[0]);
@@ -44,12 +46,6 @@
         }
         else
             return false;
-    }
-
-    private void SetDiff(int ind)
-    {
-        _diff[0] = PositionSnake[ind - 1, 0] - PositionSnake[ind, 0];
-        _diff[1] = PositionSnake[ind - 1, 1] - PositionSnake[ind, 1];
     }
 
     private void MoveHead(char c)

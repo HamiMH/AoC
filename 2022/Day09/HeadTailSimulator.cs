@@ -27,6 +27,7 @@
         {
             MoveHead(_direction);
             MoveTail();
+            //}
             AttendedPlaces.Add(PositionTail[0] + " " + PositionTail[1]);
         }
     }

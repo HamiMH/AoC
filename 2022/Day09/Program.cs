@@ -10,7 +10,6 @@ class Program
         List<string> inputCol = new List<string>();
         string lineIn1;
         while ((lineIn1 = Console.ReadLine()) != null)
-        //while ((lineIn1 = Console.ReadLine()) != "eof")
         {
             if (lineIn1 == "")
                 break;
@@ -30,7 +29,6 @@ class Program
     private static long GetResult1(List<string> inputCol)
     {
         HeadTailSimulator headTailSimulator = new HeadTailSimulator();
-
         foreach(string str in inputCol)
             headTailSimulator.MakeMove(str);
 
