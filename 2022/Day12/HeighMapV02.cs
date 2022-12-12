@@ -9,7 +9,7 @@
     private int nOfRows;
     private int nOfCols;
 
-    private int _finalLen=-10;
+    private int _finalLen = -10;
 
     private Queue<Tuple<int, int, int, int>> tuples;
 
@@ -24,15 +24,14 @@
         string strTmp;
         char charTmp;
 
-        for (i = 0; i < nOfRows; i++)
-            for (j = 0; j < nOfCols; j++)
-                _lenghtOP[i, j] = -1;
 
         for (i = 0; i < nOfRows; i++)
         {
             strTmp = inputCol[i];
             for (j = 0; j < nOfCols; j++)
             {
+                _lenghtOP[i, j] = -1;
+
                 charTmp = strTmp[j];
                 if (charTmp >= 'a' && charTmp <= 'z')
                 {
@@ -60,7 +59,6 @@
         while (tuples.Any())
         {
             tmpTuple = tuples.Dequeue();
-            //MoveOfBFS(startX, startY, -1, 0);
             if (MoveOfBFS(tmpTuple.Item1, tmpTuple.Item2, tmpTuple.Item3, tmpTuple.Item4))
                 break;
         }
@@ -70,22 +68,19 @@
 
     private bool MoveOfBFS(int x, int y, int previousLen, int previousHei)
     {
-        //Console.WriteLine(x + " " + y);
-
         if (x < 0 || y < 0 || x >= nOfRows || y >= nOfCols)
             return false;
         if (_lenghtOP[x, y] != -1)
             return false;
-        if (_heights[x, y] < previousHei-1 )
+        if (_heights[x, y] < previousHei - 1)
             return false;
-
-        _lenghtOP[x, y] = previousLen + 1;
-
         if (_heights[x, y] == 0)
         {
             _finalLen = previousLen + 1;
             return true;
         }
+
+        _lenghtOP[x, y] = previousLen + 1;
         tuples.Enqueue(Tuple.Create(x + 1, y, previousLen + 1, _heights[x, y]));
         tuples.Enqueue(Tuple.Create(x - 1, y, previousLen + 1, _heights[x, y]));
         tuples.Enqueue(Tuple.Create(x, y + 1, previousLen + 1, _heights[x, y]));
