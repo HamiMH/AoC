@@ -22,8 +22,8 @@ class Program
         }
         Stopwatch sw = new Stopwatch();
         sw.Start();
-        //int result = GetResult1(inputCol);
-        int result = GetResult2(inputCol);
+        int result = GetResult1(inputCol);
+        //long result = GetResult2(inputCol);
         sw.Stop();
 
         Console.WriteLine(result);
@@ -32,17 +32,18 @@ class Program
 
     private static int GetResult1(List<string> inputCol)
     {
-        SandFallSim sfs = new SandFallSim(inputCol);
-        return sfs.Simulate();
+        BeaconMap bm = new BeaconMap(inputCol);
+
+        return bm.GetEmpty(2000000);
     }
 
 
-    private static int GetResult2(List<string> inputCol)
+    private static long GetResult2(List<string> inputCol)
     {
-        Stopwatch sw = new Stopwatch();
-        SandFallSim sfs = new SandFallSim(inputCol,true);
-        int result = sfs.Simulate()+1;
-        return result;
+        BeaconMap bm = new BeaconMap(inputCol);
+
+        //return bm.GetValOfFree(20);
+        return bm.GetValOfFree(4000000);
     }
 
 

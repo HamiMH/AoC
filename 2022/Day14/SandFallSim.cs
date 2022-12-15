@@ -130,7 +130,7 @@ internal class SandFallSim
             if (Occupied[0,xFallCoord])
                 break;
         }
-        PrintSpace();
+        //PrintSpace();
         
         return i;
     }
