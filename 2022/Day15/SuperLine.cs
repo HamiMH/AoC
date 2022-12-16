@@ -42,7 +42,8 @@ namespace Day15
 
         public int Size()
         {
-            int value = line.Size()+1;
+            //int value = line.Size()+1;
+            int value = 1;
 
             foreach (SuperLine sl in Sublines)
             {
