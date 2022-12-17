@@ -27,6 +27,9 @@ class Program
         sw.Stop();
 
         Console.WriteLine(result);
+        if(sw.ElapsedMilliseconds>10000)
+        Console.WriteLine("Time was: "+ sw.ElapsedMilliseconds/60000+"m," + sw.ElapsedMilliseconds/1000 + " s.");
+        else
         Console.WriteLine("Time was: " + sw.ElapsedMilliseconds + " ms.");
     }
 

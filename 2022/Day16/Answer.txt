@@ -1,1 +1,13 @@
 ﻿That's not the right answer; your answer is too low. If you're stuck, make sure you're using the full input data; there are also some general tips on the about page, or you can ask for hints on the subreddit. Please wait one minute before trying again. (You guessed 2468.) [Return to Day 16]
+
+
+
+
+1707
+Time was: 801 ms.
+1707
+Time was: 365 ms.
+
+
+2582
+Time was: 834916 ms.

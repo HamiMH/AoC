@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Day17": {
+        "commandName": "Project",
+        "commandLineArgs": "<C:\\Users\\Hami\\Documents\\AOC\\2022\\Day17\\Input1 >C:\\Users\\Hami\\Documents\\AOC\\2022\\Day17\\Output1"
+    }
+  }
+}
