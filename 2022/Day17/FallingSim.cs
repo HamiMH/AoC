@@ -9,7 +9,7 @@
     public int TypesLen;
 
     public byte[,] Layout;
-    public int Height = 50000000;
+    public int Height = 50000;
     public long HeighestPart = 0;
     public long BonusHei = 0;
     public FallingSim(List<string> inputCol)
