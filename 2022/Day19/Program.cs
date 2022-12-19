@@ -42,7 +42,7 @@ class Program
         foreach(string str in inputCol)
         {
             bp.SetBP(str);
-            result+=bp.GetBestOres(18)*index;
+            result+=bp.GetBestOres(18,0,0,0,0)*index;
             index++;
         }
         return result;

@@ -18,6 +18,7 @@ internal class BluePrint
     private int[,] Cost = new int[NOfGeodes, NOfGeodes];
 
     List<SortedSet<StateOfSim>> sortedSets = new List<SortedSet<StateOfSim>>();
+    List<StateOfSim> states = new List<StateOfSim>();
 
 
     public BluePrint()
@@ -26,7 +27,12 @@ internal class BluePrint
             sortedSets.Add(new SortedSet<StateOfSim>());
 
 
-        
+        int[] arr = { 0, 0, 0, 0 };
+        for (int i = 0; i < 30; i++)
+            states.Add(new StateOfSim(arr, arr));
+
+
+
         //AddSoS(0, new StateOfSim(new int[] { 0, 0, 0, 0 }, new int[] { 0, 0, 0, 0 }));
         //AddSoS(0, new StateOfSim(new int[] { 0, 0, 0, 0 }, new int[] { 0, 0, 0, 1 }));
         //AddSoS(0, new StateOfSim(new int[] { 0, 0, 0, 0 }, new int[] { 0, 0, 1, 0 }));
@@ -91,51 +97,83 @@ internal class BluePrint
                 Cost[i, j] = 0;
         }
         Robots[0] = 1;
+
+        int[] arr = { 0, 0, 0, 0 };
+        for (i = 0; i < 30; i++)
+            states[0]=(new StateOfSim(arr, arr));
     }
 
-    internal int GetBestOres(int remSteps)
+    internal int GetBestOres(int remSteps, int couldBoughtOre,
+    int couldBoughtClay,
+    int couldBoughtObsi,
+    int couldBoughtGeod
+)
     {
         if (remSteps == 0)
             return Material[GEOD];
 
-        if (AddSoS(remSteps, new StateOfSim(Material,Robots)) == false)
+        //if (AddSoS(remSteps, new StateOfSim(Material, Robots)) == false)
+        //    return -10000;
+
+        StateOfSim tmpState = new StateOfSim(Material, Robots);
+        if (tmpState.IsLessThen(states[remSteps]))
             return -10000;
-        int canBuyOreMine = CanBuy(ORE);
+        if(states[remSteps].IsLessThen(tmpState))
+            states[remSteps]=tmpState;
+
         int canBuyClayMine;
         int canBuyObsiMine;
         int canBuyGeodMine;
 
+        int canBuyOreMineInTheEnd;
+        int canBuyClayMineInTheEnd;
+        int canBuyObsiMineInTheEnd;
+        int canBuyGeodMineInTheEnd;
+
         int maxGain = 0;
         int tmp;
 
+        int canBuyOreMine = CanBuySpec(ORE, couldBoughtOre);
         Tuple<int, int, int, int> tupple;
         tupple = GetMaterialGain();
         int i, j, k, l;
         for (i = 0; i <= canBuyOreMine; i++)
         {
             Buy(ORE, i);
-            canBuyClayMine = CanBuy(CLAY);
+            canBuyClayMine = CanBuySpec(CLAY, couldBoughtClay);
             for (j = 0; j <= canBuyClayMine; j++)
             {
                 Buy(CLAY, j);
-                canBuyObsiMine = CanBuy(OBSI);
+                canBuyObsiMine = CanBuySpec(OBSI, couldBoughtObsi);
                 for (k = 0; k <= canBuyObsiMine; k++)
                 {
                     Buy(OBSI, k);
-                    canBuyGeodMine = CanBuy(GEOD);
-                    for (l = 0; l <= canBuyGeodMine; l++)
-                    {
+                    canBuyGeodMine = CanBuySpec(GEOD, couldBoughtGeod);
+                    //for (l = 0; l <= canBuyGeodMine; l++)
+                    //{
+                        l = canBuyGeodMine;
                         Buy(GEOD, l);
 
+                        canBuyOreMineInTheEnd = CanBuy(ORE);
+                        canBuyClayMineInTheEnd = CanBuy(CLAY);
+                        canBuyObsiMineInTheEnd = CanBuy(OBSI);
+                        canBuyGeodMineInTheEnd = CanBuy(GEOD);
+
+
                         AddMaterials(tupple);
-                        tmp = GetBestOres(remSteps - 1);
+
+                        //if (i == 0 && j == 0 && k == 0 && l == 0)
+                        tmp = GetBestOres(remSteps - 1, canBuyOreMineInTheEnd, canBuyClayMineInTheEnd, canBuyObsiMineInTheEnd, canBuyGeodMineInTheEnd);
+                        //else
+                        //    tmp = GetBestOres(remSteps - 1, 0, 0, 0, 0);
+
                         if (maxGain < tmp)
                             maxGain = tmp;
 
                         RemoveMaterials(tupple);
 
                         RevertBuy(GEOD, l);
-                    }
+                    //}
                     RevertBuy(OBSI, k);
                 }
                 RevertBuy(CLAY, j);
@@ -163,6 +201,13 @@ internal class BluePrint
         Material[3] += tupple.Item4;
     }
 
+    private int CanBuySpec(int type, int previous)
+    {
+        if (previous > 0)
+            return 0;
+
+        return CanBuy(type);
+    }
     private int CanBuy(int type)
     {
         int max = int.MaxValue;
