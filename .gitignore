@@ -46,6 +46,8 @@ x64/
 *.vsidx
 *.metadata.v5.2
 *.vs
+*.assets.cache
+*.GeneratedMSBuildEditorConfig.editorconfig
 
 # Visual C++ cache files
 ipch/
