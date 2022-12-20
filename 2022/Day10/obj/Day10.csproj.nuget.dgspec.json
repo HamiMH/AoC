@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Hami\\Documents\\AOC\\2022\\Day10\\Day10.csproj": {}
+    "C:\\Users\\z004nz8k\\Documents\\AOC\\AoC\\2022\\Day10\\Day10.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Hami\\Documents\\AOC\\2022\\Day10\\Day10.csproj": {
+    "C:\\Users\\z004nz8k\\Documents\\AOC\\AoC\\2022\\Day10\\Day10.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hami\\Documents\\AOC\\2022\\Day10\\Day10.csproj",
+        "projectUniqueName": "C:\\Users\\z004nz8k\\Documents\\AOC\\AoC\\2022\\Day10\\Day10.csproj",
         "projectName": "Day10",
-        "projectPath": "C:\\Users\\Hami\\Documents\\AOC\\2022\\Day10\\Day10.csproj",
-        "packagesPath": "C:\\Users\\Hami\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hami\\Documents\\AOC\\2022\\Day10\\obj\\",
+        "projectPath": "C:\\Users\\z004nz8k\\Documents\\AOC\\AoC\\2022\\Day10\\Day10.csproj",
+        "packagesPath": "C:\\Users\\z004nz8k\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\z004nz8k\\Documents\\AOC\\AoC\\2022\\Day10\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Hami\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\z004nz8k\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://artifactory.siemens.net/artifactory/api/nuget/nuget-remote": {}
         },
         "frameworks": {
           "net6.0": {
@@ -59,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

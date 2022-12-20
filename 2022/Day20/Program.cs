@@ -1,4 +1,5 @@
 ﻿
+using Day20;
 using System;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
@@ -22,8 +23,8 @@ class Program
         }
         Stopwatch sw = new Stopwatch();
         sw.Start();
-        int result = GetResult1(inputCol);
-        //int result = GetResult2(inputCol);
+        //long result = GetResult1(inputCol);
+        long result = GetResult2(inputCol);
         sw.Stop();
 
         Console.WriteLine(result);
@@ -34,37 +35,18 @@ class Program
         Console.ReadLine();
     }
 
-    private static int GetResult1(List<string> inputCol)
+    private static long GetResult1(List<string> inputCol)
     {
-        BluePrint bp = new BluePrint();
-        int result = 0;
-        int index = 1;
-        foreach(string str in inputCol)
-        {
-            bp.SetBP(str);
-            //result+=bp.GetBestOres(18,0,0,0,0)*index;
-            result+=bp.GetBestOresBFS(24)*index;
-            index++;
-        }
-        return result;
+        DouLL dll = new DouLL(inputCol,1);
+        return dll.Simulate();
     }
 
 
-    private static int GetResult2(List<string> inputCol)
+    private static long GetResult2(List<string> inputCol)
     {
-        BluePrint bp = new BluePrint();
-        int result = 1;
-        int index = 0;
-        foreach (string str in inputCol)
-        {
-            if (index == 3)
-                break;
-            bp.SetBP(str);
-            //result+=bp.GetBestOres(18,0,0,0,0)*index;
-            result *= bp.GetBestOresBFS(32);
-            index++;
-        }
-        return result;
+        long dk = 811589153;
+        DouLL dll = new DouLL(inputCol,dk);
+        return dll.Simulate(10);
     }
 
 

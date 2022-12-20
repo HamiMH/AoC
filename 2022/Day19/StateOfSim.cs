@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Day19
 {
-    internal class StateOfSim : IComparable<StateOfSim>
+    public class StateOfSim : IComparable<StateOfSim>
     {
-        public const int NOfStates = 8;
+        public static int NOfStates = 8;
         public int[] states = new int[NOfStates];
 
         public StateOfSim(int[] ores, int[] oresMiners)
