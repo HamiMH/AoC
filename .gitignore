@@ -54,7 +54,7 @@ x64/
 *.assets.cache
 *.assets.json
 *.nuget.cache
-
+*.vs/*
 
 
 # Visual C++ cache files
