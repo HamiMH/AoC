@@ -48,6 +48,14 @@ x64/
 *.vs
 *.assets.cache
 *.GeneratedMSBuildEditorConfig.editorconfig
+*.v5.1
+*.dgspec.json
+*.g.props
+*.assets.cache
+*.assets.json
+*.nuget.cache
+
+
 
 # Visual C++ cache files
 ipch/
@@ -61,6 +69,7 @@ ipch/
 *.psess
 *.vsp
 *.vspx
+*.v2
 
 # Guidance Automation Toolkit
 *.gpState
