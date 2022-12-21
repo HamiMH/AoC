@@ -1,5 +1,5 @@
 ﻿
-using Day20;
+
 using System;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
@@ -37,13 +37,21 @@ class Program
 
     private static long GetResult1(List<string> inputCol)
     {
-        return 0;
+        MonkeyGraph mg = new MonkeyGraph(inputCol);
+        return mg.DFS(mg.GetNode("root"));
     }
 
 
     private static long GetResult2(List<string> inputCol)
     {
-        return 0;
+        MonkeyGraph mg = new MonkeyGraph(inputCol);
+        mg.GetNode("root").Oper = '=';
+        mg.GetNode("humn").ItIsMe = true;
+        mg.GetNode("humn").Value = -1;
+        mg.DFS2(mg.GetNode("root"));
+        mg.DFCalculation(mg.GetNode("root"));
+
+        return mg.GetNode("humn").Value;
     }
 
 

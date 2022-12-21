@@ -55,7 +55,7 @@ x64/
 *.assets.json
 *.nuget.cache
 *.vs/*
-
+*.dtbcache.v2
 
 # Visual C++ cache files
 ipch/
