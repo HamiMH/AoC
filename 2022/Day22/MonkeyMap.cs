@@ -7,11 +7,11 @@
     public List<string> LineOfCommands;
     public int LineOfCommandsLen;
     public int[,] DirectMap = new int[4, 2] { { 1, 0 }, { 0, 1 }, { -1, 0 }, { 0, -1 } };
-    public Dictionary<string, Tuple<int, int,int >> SpecCases = new Dictionary<string, Tuple<int, int,int>>();
+    //public Dictionary<string, Tuple<int, int, int>> SpecCases = new Dictionary<string, Tuple<int, int, int>>();
     public MonkeyMap(List<string> inputCol)
     {
         inputCol[0] = inputCol[0].Substring(3);
-        inputCol[0] = "   "+inputCol[0];
+        inputCol[0] = "   " + inputCol[0];
         LineOfCommands = new List<string>();
         CreateLineOfCommands(inputCol.Last());
 
@@ -54,44 +54,44 @@
         }
 
 
-        //for (i = 0; i < nOfRow; i++)
-        //{
-        //    Console.WriteLine("");
-        //    for (j = 0; j < nOfCol; j++)
-        //    {
-        //        switch (Map[i, j])
-        //        {
-        //            case 0:
-        //                Console.Write(" ");
-        //                break;
-        //            case 1:
-        //                Console.Write(".");
-        //                break;
-        //            case 2:
-        //                Console.Write("#");
-        //                break;
-        //        }
-        //    }
-
-        //}
-        //Console.WriteLine("");
-
-
-
-
-    }
-
-    private void GetPosition(ref int x, ref int y, ref int dirSP)
-    {
-        string str = x + "," + y + "," + dirSP;
-        if (SpecCases.ContainsKey(str))
+        for (i = 0; i < nOfRow; i++)
         {
-            Tuple<int, int,int> tup = SpecCases[str];
-            x = tup.Item1;
-            y = tup.Item2;
-            dirSP = tup.Item3;
+            Console.WriteLine("");
+            for (j = 0; j < nOfCol; j++)
+            {
+                switch (Map[i, j])
+                {
+                    case 0:
+                        Console.Write(" ");
+                        break;
+                    case 1:
+                        Console.Write(".");
+                        break;
+                    case 2:
+                        Console.Write("#");
+                        break;
+                }
+            }
+
         }
+        Console.WriteLine("");
+
+
+
+
     }
+
+    //private void GetPosition(ref int x, ref int y, ref int dirSP)
+    //{
+    //    string str = x + "," + y + "," + dirSP;
+    //    if (SpecCases.ContainsKey(str))
+    //    {
+    //        Tuple<int, int, int> tup = SpecCases[str];
+    //        x = tup.Item1;
+    //        y = tup.Item2;
+    //        dirSP = tup.Item3;
+    //    }
+    //}
 
     private void GetPosition2(ref int x, ref int y, ref int dirSP)
     {
@@ -100,7 +100,10 @@
             case 0:
                 if (y < 50)
                 {
-                    if (x >= 150)
+                    if (x > 150)
+                        throw new Exception();
+
+                    if (x == 150)
                     {
                         x = 99;
                         y = 149 - y;
@@ -109,82 +112,239 @@
                 }
                 else if (y < 100)
                 {
-                    if (x >= 100)
+                    if (x > 100)
+                        throw new Exception();
+
+                    if (x == 100)
                     {
-                        x = y;
-                        y = x;
+                        x = 50 + y;
+                        y = 49;
                         dirSP = 3;
                     }
                 }
                 else if (y < 150)
                 {
-                    if (x >= 100)
+                    if (x > 100)
+                        throw new Exception();
+
+                    if (x == 100)
                     {
                         x = 149;
                         y = 149 - y;
                         dirSP = 2;
                     }
                 }
-                else if (y < 50)
+                else if (y < 200)
                 {
+                    if (x >50)
+                        throw new Exception();
+
+                    if (x == 50)
+                    {
+                        x = y - 100;
+                        y = 149;
+                        dirSP = 3;
+                    }
 
                 }
-                break;
+                else
+                {
+                    throw new Exception();
+                }
+                return;
+
+
             case 1:
-                break;
+                if (x < 50)
+                {
+                    if (y > 200)
+                        throw new Exception();
+                    if (y == 200)
+                    {
+                        x = x + 100;
+                        y = 0;
+                        dirSP = 1;
+                    }
+                }
+                else if (x < 100)
+                {
+                    if (y >150)
+                        throw new Exception();
+
+                    if (y == 150)
+                    {
+                        y = x + 100;
+                        x = 49;
+                        dirSP = 2;
+                    }
+                }
+                else if (x < 150)
+                {
+                    if (y> 50)
+                        throw new Exception();
+
+                    if (y == 50)
+                    {
+                        y = x - 50;
+                        x = 99;
+                        dirSP = 2;
+                    }
+                }
+                else
+                {
+                    throw new Exception();
+                }
+                return;
+
+
             case 2:
-                break;
+                if (y < 50)
+                {
+                    if (x < 49)
+                        throw new Exception();
+
+                    if (x == 49)
+                    {
+                        x = 0;
+                        y = 149 - y;
+                        dirSP = 0;
+                    }
+                }
+                else if (y < 100)
+                {
+                    if (x < 49)
+                        throw new Exception();
+
+                    if (x == 49)
+                    {
+                        x = y - 50;
+                        y = 100;
+                        dirSP = 1;
+                    }
+                }
+                else if (y < 150)
+                {
+                    if (x < -1)
+                        throw new Exception();
+
+                    if (x == -1)
+                    {
+                        x = 50;
+                        y = 149 - y;
+                        dirSP = 0;
+                    }
+                }
+                else if (y < 200)
+                {
+                    if (x < -1)
+                        throw new Exception();
+
+                    if (x == -1)
+                    {
+                        x = y - 100;
+                        y = 0;
+                        dirSP = 1;
+                    }
+
+                }
+                else
+                {
+                    throw new Exception();
+                }
+                return;
+
+
             case 3:
-                break;
+                if (x < 50)
+                {
+                    if (y < 99)
+                        throw new Exception();
+
+                    if (y == 99)
+                    {
+                        y = x + 50;
+                        x = 50;
+                        dirSP = 0;
+                    }
+                }
+                else if (x < 100)
+                {
+                    if (y < -1)
+                        throw new Exception();
+
+                    if (y == -1)
+                    {
+                        y = x + 100;
+                        x = 0;
+                        dirSP = 0;
+                    }
+                }
+                else if (x < 150)
+                {
+                    if (y < -1)
+                        throw new Exception();
+
+                    if (y == -1)
+                    {
+                        x = x - 100;
+                        y = 199;
+                        dirSP = 3;
+                    }
+                }
+                else
+                {
+                    throw new Exception();
+                }
+                return;
         }
 
-        string str = x + "," + y + "," + dirSP;
-        if (SpecCases.ContainsKey(str))
-        {
-            Tuple<int, int, int> tup = SpecCases[str];
-            x = tup.Item1;
-            y = tup.Item2;
-            dirSP = tup.Item3;
-        }
+        //string str = x + "," + y + "," + dirSP;
+        //if (SpecCases.ContainsKey(str))
+        //{
+        //    Tuple<int, int, int> tup = SpecCases[str];
+        //    x = tup.Item1;
+        //    y = tup.Item2;
+        //    dirSP = tup.Item3;
+        //}
     }
 
-    public void PreProcessingOfMapV01()
-    {
-        int i, j, minX, maxX, minY, maxY;
-        for (i = 0; i < nOfRow; i++)
-        {
-            minX = 1000000;
-            maxX = 0;
-            for (j = 0; j < nOfCol; j++)
-            {
-                if (Map[i, j] == 1 || Map[i, j] == 2)
-                {
-                    minX = Math.Min(minX, j);
-                    maxX = Math.Max(maxX, j);
-                }
-            }
-            SpecCases.Add((maxX + 1) + "," + i + ",0", new Tuple<int, int, int>(minX, i,0));
-            SpecCases.Add((minX - 1) + "," + i + ",2", new Tuple<int, int, int>(maxX, i,2));
-        }
+    //public void PreProcessingOfMapV01()
+    //{
+    //    int i, j, minX, maxX, minY, maxY;
+    //    for (i = 0; i < nOfRow; i++)
+    //    {
+    //        minX = 1000000;
+    //        maxX = 0;
+    //        for (j = 0; j < nOfCol; j++)
+    //        {
+    //            if (Map[i, j] == 1 || Map[i, j] == 2)
+    //            {
+    //                minX = Math.Min(minX, j);
+    //                maxX = Math.Max(maxX, j);
+    //            }
+    //        }
+    //        SpecCases.Add((maxX + 1) + "," + i + ",0", new Tuple<int, int, int>(minX, i, 0));
+    //        SpecCases.Add((minX - 1) + "," + i + ",2", new Tuple<int, int, int>(maxX, i, 2));
+    //    }
 
-        for (j = 0; j < nOfCol; j++)
-        {
-            if (j == 46)
-                minX = 0;
-            minY = 1000000;
-            maxY = 0;
-            for (i = 0; i < nOfRow; i++)
-            {
-                if (Map[i, j] == 1 || Map[i, j] == 2)
-                {
-                    minY = Math.Min(minY, i);
-                    maxY = Math.Max(maxY, i);
-                }
-            }
-            SpecCases.Add(j + "," + (maxY + 1) + ",1", new Tuple<int, int, int>(j, minY,1));
-            SpecCases.Add(j + "," + (minY - 1) + ",3", new Tuple<int, int, int>(j, maxY,3));
-        }
-    }
+    //    for (j = 0; j < nOfCol; j++)
+    //    {
+    //        if (j == 46)
+    //            minX = 0;
+    //        minY = 1000000;
+    //        maxY = 0;
+    //        for (i = 0; i < nOfRow; i++)
+    //        {
+    //            if (Map[i, j] == 1 || Map[i, j] == 2)
+    //            {
+    //                minY = Math.Min(minY, i);
+    //                maxY = Math.Max(maxY, i);
+    //            }
+    //        }
+    //        SpecCases.Add(j + "," + (maxY + 1) + ",1", new Tuple<int, int, int>(j, minY, 1));
+    //        SpecCases.Add(j + "," + (minY - 1) + ",3", new Tuple<int, int, int>(j, maxY, 3));
+    //    }
+    //}
 
     private void CreateLineOfCommands(string line)
     {
@@ -249,18 +409,23 @@
 
     private int MakeMove(ref int startX, ref int startY, ref int direct, int nOfMoves)
     {
-        int difX = DirectMap[direct, 0];
-        int difY = DirectMap[direct, 1];
+        int difX;
+        int difY;
         int x;
         int y;
         int dir;
         int mapxy = Map[startY, startX];
+        if (mapxy != 1)
+            Console.WriteLine(mapxy);
         for (int i = 0; i < nOfMoves; i++)
         {
+            difX = DirectMap[direct, 0];
+            difY = DirectMap[direct, 1];
             x = startX + difX;
             y = startY + difY;
             dir = direct;
-            GetPosition(ref x, ref y, ref dir);
+            //GetPosition(ref x, ref y, ref dir);
+            GetPosition2(ref x, ref y, ref dir);
             if (Map[y, x] == 2)
             {
                 break;

@@ -24,8 +24,8 @@ class Program
         }
         Stopwatch sw = new Stopwatch();
         sw.Start();
-        long result = GetResult1(inputCol);
-        //long result = GetResult2(inputCol);
+        //long result = GetResult1(inputCol);
+        long result = GetResult2(inputCol);
         sw.Stop();
 
         Console.WriteLine(result);
@@ -39,7 +39,7 @@ class Program
     private static long GetResult1(List<string> inputCol)
     {
         MonkeyMap mm = new MonkeyMap(inputCol);
-        mm.PreProcessingOfMapV01();
+        //mm.PreProcessingOfMapV01();
         return mm.Simulate();
         //return 0;
     }
