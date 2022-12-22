@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Day22": {
+      "commandName": "Project",
+      "commandLineArgs": " < C:\\\\Users\\\\z004nz8k\\\\Documents\\\\AOC\\\\AOC\\\\2022\\\\Day22\\\\Input1 >C:\\\\Users\\\\z004nz8k\\\\Documents\\\\AOC\\\\AOC\\\\2022\\\\Day22\\\\Output1"
+    }
+  }
+}
