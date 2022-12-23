@@ -57,6 +57,9 @@ x64/
 *.vs/*
 *.dtbcache.v2
 */obj/*
+*//obj//*
+*/.vs/*
+*//.vs//*
 
 # Visual C++ cache files
 ipch/
