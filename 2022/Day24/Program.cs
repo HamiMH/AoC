@@ -1,4 +1,5 @@
 ﻿
+
 using System;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
@@ -22,29 +23,33 @@ class Program
         }
         Stopwatch sw = new Stopwatch();
         sw.Start();
-        //int result = GetResult1(inputCol);
+        //long result = GetResult1(inputCol);
         long result = GetResult2(inputCol);
         sw.Stop();
 
         Console.WriteLine(result);
-        Console.WriteLine("Time was: " + sw.ElapsedMilliseconds + " ms.");
+        if (sw.ElapsedMilliseconds > 10000)
+            Console.WriteLine("Time was: " + sw.ElapsedMilliseconds / 60000 + "m," + sw.ElapsedMilliseconds / 1000 + " s.");
+        else
+            Console.WriteLine("Time was: " + sw.ElapsedMilliseconds + " ms.");
+        Console.ReadLine();
     }
 
-    private static int GetResult1(List<string> inputCol)
+    private static long GetResult1(List<string> inputCol)
     {
-        BeaconMap bm = new BeaconMap(inputCol);
-
-        return bm.GetEmpty(2000000);
+        BlizzValley bv = new BlizzValley(inputCol);
+        //mm.PreProcessingOfMapV01();
+        return bv.TimeToTravel();
+        //return 0;
     }
 
 
     private static long GetResult2(List<string> inputCol)
     {
-        BeaconMap bm = new BeaconMap(inputCol);
+        BlizzValley bv = new BlizzValley(inputCol);
+        //mm.PreProcessingOfMapV01();
+        return bv.TimeToTravelBackAndFor();
 
-        //return bm.GetValOfFree(20);
-        return bm.GetValOfFree(4000000);
+
     }
-
-
 }
