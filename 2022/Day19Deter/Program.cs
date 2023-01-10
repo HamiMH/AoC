@@ -22,8 +22,8 @@ class Program
         }
         Stopwatch sw = new Stopwatch();
         sw.Start();
-        int result = GetResult1(inputCol);
-        //int result = GetResult2(inputCol);
+        //int result = GetResult1(inputCol);
+        int result = GetResult2(inputCol);
         sw.Stop();
 
         Console.WriteLine(result);
@@ -41,9 +41,8 @@ class Program
         int index = 1;
         foreach(string str in inputCol)
         {
-            bp.SetBP(str);
-            //result+=bp.GetBestOres(18,0,0,0,0)*index;
-            result+=bp.GetBestOresBFS(24)*index;
+            bp.SetBP(str,24);
+            result+=bp.GetBestOresDFS(24)*index;
             index++;
         }
         return result;
@@ -59,9 +58,8 @@ class Program
         {
             if (index == 3)
                 break;
-            bp.SetBP(str);
-            //result+=bp.GetBestOres(18,0,0,0,0)*index;
-            result *= bp.GetBestOresBFS(32);
+            bp.SetBP(str,32);
+            result *= bp.GetBestOresDFS(32);
             index++;
         }
         return result;

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\z004nz8k\\Documents\\AOC\\AoC\\2022\\Day06\\Day06.csproj": {}
+    "C:\\UserData\\z004nz8k\\Documents\\AOC\\2022\\Day06\\Day06.csproj": {}
   },
   "projects": {
-    "C:\\Users\\z004nz8k\\Documents\\AOC\\AoC\\2022\\Day06\\Day06.csproj": {
+    "C:\\UserData\\z004nz8k\\Documents\\AOC\\2022\\Day06\\Day06.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\z004nz8k\\Documents\\AOC\\AoC\\2022\\Day06\\Day06.csproj",
+        "projectUniqueName": "C:\\UserData\\z004nz8k\\Documents\\AOC\\2022\\Day06\\Day06.csproj",
         "projectName": "Day06",
-        "projectPath": "C:\\Users\\z004nz8k\\Documents\\AOC\\AoC\\2022\\Day06\\Day06.csproj",
+        "projectPath": "C:\\UserData\\z004nz8k\\Documents\\AOC\\2022\\Day06\\Day06.csproj",
         "packagesPath": "C:\\Users\\z004nz8k\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\z004nz8k\\Documents\\AOC\\AoC\\2022\\Day06\\obj\\",
+        "outputPath": "C:\\UserData\\z004nz8k\\Documents\\AOC\\2022\\Day06\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
           "https://artifactory.siemens.net/artifactory/api/nuget/nuget-remote": {}
         },
         "frameworks": {

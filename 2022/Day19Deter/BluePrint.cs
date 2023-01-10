@@ -1,4 +1,4 @@
-﻿
+﻿using Day19;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,481 +15,71 @@ internal class BluePrint
 
     //private int[] Robots = new int[NOfGeodes];
     //private int[] Material = new int[NOfGeodes];
-    private int[,] Cost = new int[NOfGeodes, NOfGeodes];
+    public static int[,] Cost = new int[NOfGeodes, NOfGeodes];
+    public static int[] CostOreHiearch = new int[NOfGeodes];
+    private int[] MaxUsefulRobots = new int[NOfGeodes];
 
     //List<SortedSet<StateOfSim>> sortedSets = new List<SortedSet<StateOfSim>>();
-    List<StateOfSim> states = new List<StateOfSim>();
-
-    private int[] GeodesInTime = new int[30];
+    Dictionary<string, int> MEMO = new Dictionary<string, int>();
+    Dictionary<int, int>[,,,,] MEMO2;
 
     public BluePrint()
     {
-        //for (int i = 0; i < 30; i++)
-        //    sortedSets.Add(new SortedSet<StateOfSim>());
-
-
-        int[] arr = { 0, 0, 0, 0 };
-        for (int i = 0; i < 30; i++)
-            states.Add(new StateOfSim(arr, arr));
-
-
-
-        //AddSoS(0, new StateOfSim(new int[] { 0, 0, 0, 0 }, new int[] { 0, 0, 0, 0 }));
-        //AddSoS(0, new StateOfSim(new int[] { 0, 0, 0, 0 }, new int[] { 0, 0, 0, 1 }));
-        //AddSoS(0, new StateOfSim(new int[] { 0, 0, 0, 0 }, new int[] { 0, 0, 1, 0 }));
-        //AddSoS(0, new StateOfSim(new int[] { 0, 0, 0, 0 }, new int[] { 0, 0, 2, 2 }));
-        //AddSoS(0, new StateOfSim(new int[] { 0, 0, 0, 0 }, new int[] { 0, 0, 2, 0 }));
-        //AddSoS(0, new StateOfSim(new int[] { 0, 0, 0, 0 }, new int[] { 0, 0, 2, 1 }));
-
-
-        //sortedSets[0].Add(new StateOfSim(new int[] { 0, 0, 0, 0 }, new int[] { 0, 0, 0, 0 }));
-        //bool a = sortedSets[0].Contains(new StateOfSim(new int[] { 0, 0, 0, 0 }, new int[] { 0, 1, 0, 0 }));
-        //if (a)
-        //    sortedSets[0].Remove(new StateOfSim(new int[] { 0, 0, 0, 0 }, new int[] { 0, 1, 0, 0 }));
-        //sortedSets[0].Add(new StateOfSim(new int[] { 0, 0, 0, 0 }, new int[] { 0, 1, 0, 0 }));
-
-        //sortedSets[0].Add(new StateOfSim(new int[] { 0, 0, 0, 0 }, new int[] { 0, 0, 1, 1 }));
-        //bool b = sortedSets[0].Contains(new StateOfSim(new int[] { 0, 0, 0, 0 }, new int[] { 0, 1, 0, 0 }));
-        //sortedSets[0].Add(new StateOfSim(new int[] { 0, 0, 0, 0 }, new int[] { 0, 0, 0, 1 }));
-        //bool c = sortedSets[0].Contains(new StateOfSim(new int[] { 0, 0, 0, 0 }, new int[] { 0, 0, 1, 0 }));
-
-        //sortedSets[0].Add(new StateOfSim(new int[] { 0, 0, 0, 0 }, new int[] { 0, 0, 1, 0 }));
-
-        //sortedSets[0].Add(new StateOfSim(new int[] { 0, 0, 0, 0 }, new int[] { 0, 0, 1, 1 }));
-        //sortedSets[0].Add(new StateOfSim(new int[] { 0, 0, 0, 0 }, new int[] { 0, 1, 0, 0 }));
-
     }
 
-    //public bool AddSoS(int index, StateOfSim sos)
-    //{
-    //    bool isMandatoryState = false;
-    //    while (sortedSets[index].Contains(sos))
-    //    {
-    //        isMandatoryState = true;
-    //        sortedSets[index].Remove(sos);
-    //    }
-
-    //    if (isMandatoryState == false)
-    //    {
-    //        isMandatoryState = true;
-    //        foreach (StateOfSim inSS in sortedSets[index])
-    //        {
-    //            if (sos.IsLessThen(inSS))
-    //            {
-    //                isMandatoryState = false;
-    //                break;
-    //            }
-
-    //        }
-    //    }
-    //    if (isMandatoryState)
-    //        sortedSets[index].Add(sos);
-    //    return isMandatoryState;
-    //}
 
     private void Clear()
     {
         int i, j;
         for (i = 0; i < NOfGeodes; i++)
-        {
-            //Robots[i] = 0;
-            //Material[i] = 0;
             for (j = 0; j < NOfGeodes; j++)
                 Cost[i, j] = 0;
-        }
-        //Robots[0] = 1;
 
-        int[] arr = { 0, 0, 0, 0 };
-        for (i = 0; i < 30; i++)
-            states[i] = (new StateOfSim(arr, arr));
-
-        Array.Fill(GeodesInTime, 0);
     }
 
-//    internal int GetBestOres(int remSteps, int couldBoughtOre,
-//    int couldBoughtClay,
-//    int couldBoughtObsi,
-//    int couldBoughtGeod
-//)
-//    {
-//        if (remSteps == 0)
-//            return Material[GEOD];
-
-//        if (GeodesInTime[remSteps] > Material[GEOD])
-//            return -1000;
-//        if (GeodesInTime[remSteps] < Material[GEOD])
-//            GeodesInTime[remSteps] = Material[GEOD];
-
-//        //if (AddSoS(remSteps, new StateOfSim(Material, Robots)) == false)
-//        //    return -10000;
-
-//        StateOfSim tmpState = new StateOfSim(Material, Robots);
-//        if (tmpState.IsLessThen(states[remSteps]))
-//            return -10000;
-//        if (states[remSteps].IsLessThen(tmpState))
-//            states[remSteps] = tmpState;
-
-//        int canBuyOreMine;
-//        int canBuyClayMine;
-//        int canBuyObsiMine;
-//        int canBuyGeodMine;
-
-//        int canBuyOreMineInTheEnd;
-//        int canBuyClayMineInTheEnd;
-//        int canBuyObsiMineInTheEnd;
-//        int canBuyGeodMineInTheEnd;
-
-//        int maxGain = 0;
-//        int tmp;
-
-//        //= CanBuySpec(ORE, couldBoughtOre);
-//        Tuple<int, int, int, int> tupple;
-//        tupple = GetMaterialGain();
-//        int i, j, k, l;
-//        //for (i = 0; i <= canBuyOreMine; i++)
-
-//        canBuyGeodMine = CanBuySpec(GEOD, couldBoughtGeod);
-//        //for (l = 0; l <= canBuyGeodMine; l++)
-//        //{
-//        l = canBuyGeodMine;
-//        Buy(GEOD, l);
-
-//        canBuyObsiMine = CanBuySpec(OBSI, couldBoughtObsi);
-//        //for (k = 0; k <= canBuyObsiMine; k++)
-//        for (k = canBuyObsiMine; k >= 0; k--)
-//        {
-//            Buy(OBSI, k);
-//            canBuyClayMine = CanBuySpec(CLAY, couldBoughtClay);
-//            //for (j = 0; j <= canBuyClayMine; j++)
-//            for (j = canBuyClayMine; j >= 0; j--)
-//            {
-//                Buy(CLAY, j);
-//                canBuyOreMine = CanBuySpec(ORE, couldBoughtOre);
-//                for (i = canBuyOreMine; i >= 0; i--)
-//                {
-//                    Buy(ORE, i);
-
-//                    canBuyOreMineInTheEnd = CanBuy(ORE);
-//                    canBuyClayMineInTheEnd = CanBuy(CLAY);
-//                    canBuyObsiMineInTheEnd = CanBuy(OBSI);
-//                    canBuyGeodMineInTheEnd = CanBuy(GEOD);
-
-
-//                    AddMaterials(tupple);
-
-//                    tmp = GetBestOres(remSteps - 1, canBuyOreMineInTheEnd, canBuyClayMineInTheEnd, canBuyObsiMineInTheEnd, canBuyGeodMineInTheEnd);
-//                    maxGain = Math.Max(maxGain, tmp);
-
-//                    RemoveMaterials(tupple);
-
-//                    //}
-//                    RevertBuy(ORE, i);
-//                }
-//                RevertBuy(CLAY, j);
-//            }
-//            RevertBuy(OBSI, k);
-//        }
-
-//        RevertBuy(GEOD, l);
-
-
-//        return maxGain;
-//    }
-
-
-    internal int GetBestOresBFS(int nOfSteps)
+    internal int GetBestOresDFS(int nOfSteps)
     {
-        HashSet<StateBFS> old = new HashSet<StateBFS>();
-        old.Add(new StateBFS(new int[] { 0, 0, 0, 0 }, new int[] { 1, 0, 0, 0 } ));
-        int i;
-        int maxHeur;
-        for (i = 0; i < nOfSteps; i++)
+        MEMO.Clear();
+        State state = new State(new int[] { 0, 0, 0, 0 }, new int[] { 1, 0, 0, 0 });
+
+        int result = RunDFS(nOfSteps, state);
+        return result;
+
+    }
+
+    private int RunDFS(int nOfSteps, State state)
+    {
+        if (nOfSteps < 0)
+            return -10000;
+        if (nOfSteps == 0)
+            return state.Material[3];
+        NeededMaterial(nOfSteps, state);
+        //if (MEMO.ContainsKey("T: " + nOfSteps + ", " + state.ToString()))
+        //    return MEMO["T: " + nOfSteps + ", " + state.ToString()];
+
+        if (MEMO2[nOfSteps, state.Robots[0], state.Robots[1], state.Robots[2], state.Robots[3]].ContainsKey(state.MaterialHash()))
+            return MEMO2[nOfSteps, state.Robots[0], state.Robots[1], state.Robots[2], state.Robots[3]][state.MaterialHash()];
+
+        int nOfMoves;
+        int maxValue = state.Material[3] + nOfSteps * state.Robots[3];
+        for (int type = 0; type < 4; type++)
         {
-            HashSet<StateBFS> newtmpL = new HashSet<StateBFS>();
-            foreach (StateBFS oldState in old)
-            {
-                SimOneStep(oldState, newtmpL);
-            }
-            //maxHeur = 0;
-            //foreach (StateBFS stateState in newtmpL)
-            //{
-            //    maxHeur = Math.Max(maxHeur, stateState.GetHeur());
-            //}
-            //old = new List<StateBFS>();
+            if (state.Robots[type] >= MaxUsefulRobots[type])
+                continue;
+            if (CanBuild(type, state.Robots) == false)
+                continue;
+            nOfMoves = MovesToCanBuild(type, state.Robots, state.Material);
 
-            //foreach(StateBFS stateState in newtmpL)
-            //{
-            //    if(stateState.GetHeur()>maxHeur-60)
-            //        old.Add(stateState);
-            //}
-            if (newtmpL.Count > 2000)
-            {
-                List<StateBFS> tmpList = newtmpL.ToList();
-                tmpList.Sort((x, y) => y.GetHeur() - x.GetHeur());
-                old = tmpList.Take(2000).ToHashSet();
-            }
-            else
-            {
-                old = newtmpL;
-
-            }
-        }
-        int maxret = 0;
-        StateBFS bestState = new StateBFS(new int[] { 0, 0, 0, 0 }, new int[] { 1, 0, 0, 0 });
-        foreach (StateBFS oldState in old)
-        {
-            if (oldState.Material[3] > maxret)
-            {
-                maxret = oldState.Material[3];
-                bestState=oldState;
-            }
-        }
-        int ind = 0;
-        //bestState.PrintHistory(ref ind) ;
-        //Console.WriteLine("") ;
-        return maxret;
-    }
-
-
-    private void SimOneStepOld(StateBFS oldState, HashSet<StateBFS> newL)
-    {
-        int canBuyOreMine;
-        int canBuyClayMine;
-        int canBuyObsiMine;
-        int canBuyGeodMine;
-
-        Tuple<int, int, int, int> tupple;
-        tupple = GetMaterialGain(oldState);
-        int i, j, k, l;
-        //for (i = 0; i <= canBuyOreMine; i++)
-
-        canBuyGeodMine = CanBuy(GEOD, oldState);
-        //for (l = 0; l <= canBuyGeodMine; l++)
-        //{
-        l = canBuyGeodMine;
-        Buy(GEOD, l, oldState);
-
-        canBuyObsiMine = CanBuy(OBSI, oldState);
-        //for (k = 0; k <= canBuyObsiMine; k++)
-        for (k = canBuyObsiMine; k >= 0; k--)
-        {
-            Buy(OBSI, k, oldState);
-            canBuyClayMine = CanBuy(CLAY, oldState);
-            //for (j = 0; j <= canBuyClayMine; j++)
-            for (j = canBuyClayMine; j >= 0; j--)
-            {
-                Buy(CLAY, j, oldState);
-                canBuyOreMine = CanBuy(ORE, oldState);
-                for (i = canBuyOreMine; i >= 0; i--)
-                {
-                    Buy(ORE, i, oldState);
-
-
-
-                    AddMaterials(tupple, oldState);
-
-
-                    newL.Add(new StateBFS(oldState));
-
-                    RemoveMaterials(tupple, oldState);
-
-                    //}
-                    RevertBuy(ORE, i, oldState);
-                }
-                RevertBuy(CLAY, j, oldState);
-            }
-            RevertBuy(OBSI, k, oldState);
+            maxValue = Math.Max(maxValue, RunDFS(nOfSteps - (nOfMoves + 1), state.Build(type, nOfMoves + 1)));
         }
 
-        RevertBuy(GEOD, l, oldState);
+        //MEMO.Add("T: " + nOfSteps + ", " + state.ToString(), maxValue);
+        MEMO2[nOfSteps, state.Robots[0], state.Robots[1], state.Robots[2], state.Robots[3]].Add(state.MaterialHash(), maxValue);
+        return maxValue;
     }
 
 
-    private void SimOneStep(StateBFS oldState, HashSet<StateBFS> newL)
-    {
-        int canBuyOreMine= CanBuy(ORE, oldState);
-        int canBuyClayMine = CanBuy(CLAY, oldState);
-        int canBuyObsiMine = CanBuy(OBSI, oldState);
-        int canBuyGeodMine = CanBuy(GEOD, oldState);
-
-        Tuple<int, int, int, int> tupple;
-        tupple = GetMaterialGain(oldState);
-        int i, j, k, l;
-        //for (i = 0; i <= canBuyOreMine; i++)
-
-        //for (l = 0; l <= canBuyGeodMine; l++)
-        //{
-
-        if (canBuyGeodMine > 0)
-        {
-            Buy(GEOD, 1, oldState);
-            AddMaterials(tupple, oldState);
-            newL.Add(new StateBFS(oldState));
-            RemoveMaterials(tupple, oldState);
-            RevertBuy(GEOD, 1, oldState);
-            return;
-        }
-
-        if (canBuyObsiMine > 0)
-        {
-            Buy(OBSI, 1, oldState);
-            AddMaterials(tupple, oldState);
-            newL.Add(new StateBFS(oldState));
-            RemoveMaterials(tupple, oldState);
-            RevertBuy(OBSI, 1, oldState);
-            //return;
-        }
-
-        if (canBuyOreMine > 0)
-        {
-            Buy(ORE, 1, oldState);
-            AddMaterials(tupple, oldState);
-            newL.Add(new StateBFS(oldState));
-            RemoveMaterials(tupple, oldState);
-            RevertBuy(ORE, 1, oldState);
-        }
-        if (canBuyClayMine > 0)
-        {
-            Buy(CLAY, 1, oldState);
-            AddMaterials(tupple, oldState);
-            newL.Add(new StateBFS(oldState));
-            RemoveMaterials(tupple, oldState);
-            RevertBuy(CLAY, 1, oldState);
-        }
-        AddMaterials(tupple, oldState);
-        newL.Add(new StateBFS(oldState));
-        RemoveMaterials(tupple, oldState);
-    }
-
-    //private void RemoveMaterials(Tuple<int, int, int, int> tupple)
-    //{
-    //    Material[0] -= tupple.Item1;
-    //    Material[1] -= tupple.Item2;
-    //    Material[2] -= tupple.Item3;
-    //    Material[3] -= tupple.Item4;
-    //}
-
-    private void RemoveMaterials(Tuple<int, int, int, int> tupple, StateBFS stateBFS)
-    {
-        stateBFS.Material[0] -= tupple.Item1;
-        stateBFS.Material[1] -= tupple.Item2;
-        stateBFS.Material[2] -= tupple.Item3;
-        stateBFS.Material[3] -= tupple.Item4;
-    }
-
-    //private void AddMaterials(Tuple<int, int, int, int> tupple)
-    //{
-    //    Material[0] += tupple.Item1;
-    //    Material[1] += tupple.Item2;
-    //    Material[2] += tupple.Item3;
-    //    Material[3] += tupple.Item4;
-    //}
-
-    private void AddMaterials(Tuple<int, int, int, int> tupple, StateBFS stateBFS)
-    {
-        stateBFS.Material[0] += tupple.Item1;
-        stateBFS.Material[1] += tupple.Item2;
-        stateBFS.Material[2] += tupple.Item3;
-        stateBFS.Material[3] += tupple.Item4;
-    }
-
-    private int CanBuySpec(int type, int previous, StateBFS stateBFS)
-    {
-        if (previous > 0)
-            return 0;
-
-        return CanBuy(type, stateBFS);
-    }
-    //private int CanBuySpec(int type, int previous)
-    //{
-    //    if (previous > 0)
-    //        return 0;
-
-    //    return CanBuy(type);
-    //}
-
-    //private int CanBuy(int type)
-    //{
-    //    int max = int.MaxValue;
-    //    int tmp;
-    //    for (int i = 0; i < NOfGeodes; i++)
-    //    {
-    //        if (Cost[type, i] == 0) continue;
-    //        tmp = Material[i] / Cost[type, i];
-    //        if (tmp < max)
-    //            max = tmp;
-    //    }
-
-    //    return max;
-    //}
-    private int CanBuy(int type, StateBFS stateBFS)
-    {
-        int max = int.MaxValue;
-        int tmp;
-        for (int i = 0; i < NOfGeodes; i++)
-        {
-            if (Cost[type, i] == 0) continue;
-            tmp = stateBFS.Material[i] / Cost[type, i];
-            if (tmp < max)
-                max = tmp;
-        }
-
-        return max;
-    }
-    //private void Buy(int type, int amoutToBuy)
-    //{
-
-    //    for (int i = 0; i < NOfGeodes; i++)
-    //        Material[i] -= (Cost[type, i] * amoutToBuy);
-
-    //    Robots[type] += amoutToBuy;
-    //}
-
-    private void Buy(int type, int amoutToBuy, StateBFS stateBFS)
-    {
-
-        for (int i = 0; i < NOfGeodes; i++)
-            stateBFS.Material[i] -= (Cost[type, i] * amoutToBuy);
-
-        stateBFS.Robots[type] += amoutToBuy;
-    }
-    //private void RevertBuy(int type, int amoutToRevert)
-    //{
-
-    //    for (int i = 0; i < NOfGeodes; i++)
-    //        Material[i] += (Cost[type, i] * amoutToRevert);
-
-    //    Robots[type] -= amoutToRevert;
-    //}
-
-    private void RevertBuy(int type, int amoutToRevert, StateBFS stateBFS)
-    {
-
-        for (int i = 0; i < NOfGeodes; i++)
-            stateBFS.Material[i] += (Cost[type, i] * amoutToRevert);
-
-        stateBFS.Robots[type] -= amoutToRevert;
-    }
-
-    //private void AddMaterials()
-    //{
-    //    for (int i = 0; i < NOfGeodes; i++)
-    //    {
-    //        Material[i] += Robots[i];
-    //    }
-    //}
-
-    //private Tuple<int, int, int, int> GetMaterialGain()
-    //{
-    //    return new Tuple<int, int, int, int>(Robots[0], Robots[1], Robots[2], Robots[3]);
-    //}
-
-    private Tuple<int, int, int, int> GetMaterialGain(StateBFS stateBFS)
-    {
-        return new Tuple<int, int, int, int>(stateBFS.Robots[0], stateBFS.Robots[1], stateBFS.Robots[2], stateBFS.Robots[3]);
-    }
-
-    internal void SetBP(string inputStr)
+    internal void SetBP(string inputStr, int time)
     {
         Clear();
         string[] parts = inputStr.Split(new char[] { ' ' });
@@ -499,5 +89,121 @@ internal class BluePrint
         Cost[2, 1] = int.Parse(parts[21]);
         Cost[3, 0] = int.Parse(parts[27]);
         Cost[3, 2] = int.Parse(parts[30]);
+        MaxUsefulRobots[0] = Math.Max(Math.Max(Math.Max(Cost[0, 0] - 1, Cost[1, 0]), Cost[2, 0]), Cost[3, 0]);
+        MaxUsefulRobots[1] = Cost[2, 1];
+        MaxUsefulRobots[2] = Cost[3, 2];
+        MaxUsefulRobots[3] = time;
+
+        MEMO2 = new Dictionary<int, int>[time + 1, MaxUsefulRobots[0] + 1, MaxUsefulRobots[1] + 1, MaxUsefulRobots[2] + 1, MaxUsefulRobots[3] + 1];
+        int i, j, k, l, m;
+        for (i = 0; i < time + 1; i++)
+            for (j = 0; j < MaxUsefulRobots[0] + 1; j++)
+                for (k = 0; k < MaxUsefulRobots[1] + 1; k++)
+                    for (l = 0; l < MaxUsefulRobots[2] + 1; l++)
+                        for (m = 0; m < MaxUsefulRobots[3] + 1; m++)
+                            MEMO2[i, j, k, l, m] = new Dictionary<int, int>();
+
+        CostOreHiearch = new int[] { -1, -1, -1, -1 };
+
+        int maxIndex;
+        int max;
+        for (i = 0; i < 4; i++)
+        {
+            maxIndex = 0;
+            max = 0;
+            for (j = 0; j < 4; j++)
+            {
+                if (CostOreHiearch.Contains(j))
+                    continue;
+                if (Cost[j, 0] >= max)
+                {
+                    max = Cost[j, 0];
+                    maxIndex = j;
+                }
+            }
+            CostOreHiearch[i] = maxIndex;
+        }
+    }
+    internal bool CanBuild(int type, int[] robots)
+    {
+        switch (type)
+        {
+            case 0:
+                return true;
+            case 1:
+                return true;
+            case 2:
+                if (robots[1] > 0)
+                    return true;
+                else
+                    return false;
+            case 3:
+                if (robots[2] > 0)
+                    return true;
+                else
+                    return false;
+            default:
+                throw new NotImplementedException();
+
+        }
+    }
+    internal int MovesToCanBuild(int type, int[] robots, int[] material)
+    {
+        switch (type)
+        {
+            case 0:
+                if (Cost[0, 0] - material[0] <= 0)
+                    return 0;
+                return IntDiv((Cost[0, 0] - material[0]), robots[0]);
+            case 1:
+                if (Cost[1, 0] - material[0] <= 0)
+                    return 0;
+                return IntDiv((Cost[1, 0] - material[0]), robots[0]);
+            case 2:
+                int val0 = Math.Max(0, Cost[2, 0] - material[0]);
+                int val1 = Math.Max(0, Cost[2, 1] - material[1]);
+                return Math.Max(IntDiv(val0, robots[0]), IntDiv(val1, robots[1]));
+            case 3:
+                int val00 = Math.Max(0, Cost[3, 0] - material[0]);
+                int val2 = Math.Max(0, Cost[3, 2] - material[2]);
+                return Math.Max(IntDiv(val00, robots[0]), IntDiv(val2, robots[2]));
+            default:
+                throw new NotImplementedException();
+        }
+    }
+
+    private int IntDiv(int a, int b)
+    {
+        int res = a / b;
+        if (a % b > 0)
+            res++;
+        return res;
+    }
+
+    internal void NeededMaterial(int timeToEnd, State state)
+    {
+        int timeToEndTmp = timeToEnd;
+        int mater0 = 0;
+        int timeToRem;
+        for (int i = 0; i < 4; i++)
+        {
+            timeToRem = Math.Min(MaxUsefulRobots[CostOreHiearch[i]] - state.Robots[CostOreHiearch[i]], timeToEndTmp);
+            mater0 += timeToRem * Cost[CostOreHiearch[i], 0];
+            timeToEndTmp -= timeToRem;
+        }
+        state.Material[0] = Math.Min(state.Material[0], mater0);
+        //state.Material[0] = Math.Min(state.Material[0],
+        //    Math.Min(MaxUsefulRobots[0] - state.Robots[0], timeToEnd) * Cost[0, 0] +
+        //    Math.Min(MaxUsefulRobots[1] - state.Robots[1], timeToEnd) * Cost[1, 0] +
+        //    Math.Min(MaxUsefulRobots[2] - state.Robots[2], timeToEnd) * Cost[2, 0] +
+        //    Math.Min(MaxUsefulRobots[3] - state.Robots[3], timeToEnd) * Cost[3, 0]);
+
+        state.Material[1] = Math.Min(state.Material[1],
+            Math.Min(MaxUsefulRobots[2] - state.Robots[2], timeToEnd) * Cost[2, 1]);
+
+        state.Material[2] = Math.Min(state.Material[2],
+            Math.Min(MaxUsefulRobots[3] - state.Robots[3], timeToEnd) * Cost[3, 2]);
+
+
     }
 }
