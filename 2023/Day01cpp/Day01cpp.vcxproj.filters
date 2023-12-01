@@ -19,4 +19,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="r.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="t.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="t2.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
 </Project>
