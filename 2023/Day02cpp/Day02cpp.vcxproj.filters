@@ -15,19 +15,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="r.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="t.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="t2.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Day01cpp.cpp">
+    <ClCompile Include="Day02cpp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Day01cpp\r.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="..\Day01cpp\t.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="..\Day01cpp\t2.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
