@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 #include <chrono>
+#include <string_view>
 
 
 void Update(int& first, int& last, int& tmp) 
@@ -40,31 +41,36 @@ std::string MySolution(std::vector<std::string>& vec)
 }
 
 
-std::vector<std::pair<std::string, int>> detect =
+
+std::vector<std::pair<std::string_view, int>> detect =
 {
-    {std::string("one"),1},
-    {std::string("two"),2},
-    {std::string("three"),3},
-    {std::string("four"),4},
-    {std::string("five"),5},
-    {std::string("six"),6},
-    {std::string("seven"),7},
-    {std::string("eight"),8},
-    {std::string("nine"),9},
+    {std::string_view("one"),1},
+    {std::string_view("two"),2},
+    {std::string_view("three"),3},
+    {std::string_view("four"),4},
+    {std::string_view("five"),5},
+    {std::string_view("six"),6},
+    {std::string_view("seven"),7},
+    {std::string_view("eight"),8},
+    {std::string_view("nine"),9},
 };
+
+
 
 std::string MySolution2(std::vector<std::string>& vec)
 {
-    int first, last, tmp;
+    int first, last, tmp,len;
     int sum = 0;
     char c;
+    std::string_view sw;
     for (std::string& str : vec)
     {
+        sw = str;
         first = -1;
-
-        for (int i=0;i< str.length();i++)
+        len = sw.length();
+        for (int i=0;i< len;i++)
         {
-            c = str[i];
+            c = sw[i];
             if (c >= '0' && c <= '9')
             {
                 tmp = c - '0';
@@ -72,9 +78,9 @@ std::string MySolution2(std::vector<std::string>& vec)
             }
             else
             {
-                for (std::pair<std::string, int>& det : detect) 
+                for (std::pair<std::string_view, int>& det : detect)
                 {
-                    std::string substr=str.substr(i,det.first.length());
+                    std::string_view substr=sw.substr(i,det.first.length());
                     if(substr.compare(det.first)==0)
                         Update(first, last, det.second);
                 }
