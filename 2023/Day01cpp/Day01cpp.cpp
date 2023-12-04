@@ -88,7 +88,10 @@ std::string MySolution2(std::vector<std::string>& vec)
             }
         }
         sum += (10 * first + last);
+
+        std::cout << std::to_string(10 * first + last)<<std::endl;
     }
+
     return std::to_string(sum);
 }
 

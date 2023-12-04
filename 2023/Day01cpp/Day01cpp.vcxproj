@@ -132,6 +132,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="r.txt" />
+    <Text Include="rLodr.txt" />
     <Text Include="t.txt" />
     <Text Include="t2.txt" />
   </ItemGroup>

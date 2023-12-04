@@ -23,4 +23,7 @@
     <Text Include="r.txt" />
     <Text Include="t.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
 </Project>

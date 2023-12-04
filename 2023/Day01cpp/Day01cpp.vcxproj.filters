@@ -24,6 +24,9 @@
     <Text Include="t2.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="rLodr.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Day01cpp.cpp">
