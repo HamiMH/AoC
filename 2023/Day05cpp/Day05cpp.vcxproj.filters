@@ -22,5 +22,14 @@
   <ItemGroup>
     <Text Include="r.txt" />
     <Text Include="t.txt" />
+    <Text Include="myt.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Convertor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

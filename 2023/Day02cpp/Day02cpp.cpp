@@ -66,9 +66,9 @@ std::string MySolution1(std::vector<std::string>& vec)
 
 }
 
-long ValueOfSetOfGames(string& line)
+long long ValueOfSetOfGames(string& line)
 {
-    std::unordered_map<string, long> maxCubesInGame =
+    std::unordered_map<string, long long> maxCubesInGame =
     {
         {string("red"),0},
         {string("green"),0},
@@ -87,7 +87,7 @@ long ValueOfSetOfGames(string& line)
 
             vector < string > parts = CustomSplit(diceInfoes, ' ');
 
-            long amount = std::stol(parts.front());
+            long long amount = std::stol(parts.front());
             string type = parts.back();
 
 
@@ -95,7 +95,7 @@ long ValueOfSetOfGames(string& line)
                 maxCubesInGame[type] = amount;
         }
     }
-    long product = 1;
+    long long product = 1;
     for (auto& maxxxx : maxCubesInGame)
     {
         product *= maxxxx.second;
@@ -105,7 +105,7 @@ long ValueOfSetOfGames(string& line)
 
 std::string MySolution2(std::vector<std::string>& vec)
 {
-    long sum = 0;
+    long long sum = 0;
     for (std::string& str : vec)
     {
 

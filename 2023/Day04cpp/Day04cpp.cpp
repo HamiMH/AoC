@@ -72,7 +72,7 @@ std::string MySolution2()
 {
     LoadInput();
     int lenIn= vec.size();
-    vector<long> nOfCards;
+    vector<long long> nOfCards;
     for (int i = 0; i < lenIn; i++)
         nOfCards.push_back(1);
 
@@ -106,7 +106,6 @@ int main()
     {
         vec.push_back(str);
     }
-
     auto start = std::chrono::high_resolution_clock::now();
     std::string result = MySolution2();
     auto finish = std::chrono::high_resolution_clock::now();

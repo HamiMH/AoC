@@ -53,9 +53,9 @@ bool SymbolIsAdj(int i, int j, std::function<bool(char)> f)
 	}
 	return false;
 }
-long LongVal(pair<pair<int, int>, pair<int, int>>& begEnd)
+long long long longVal(pair<pair<int, int>, pair<int, int>>& begEnd)
 {
-	long sum = 0;
+	long long sum = 0;
 	int i = begEnd.first.first;
 	for (int j = begEnd.first.second; j <= begEnd.second.second; j++)
 	{
@@ -69,10 +69,10 @@ long LongVal(pair<pair<int, int>, pair<int, int>>& begEnd)
 
 
 
-long EngAdjancedToStar(std::pair<int, int>& star)
+long long EngAdjancedToStar(std::pair<int, int>& star)
 {
 	int ii, jj;
-	long product = 1;
+	long long product = 1;
 	int appears = 0;
 	for (std::pair<std::pair<int, int>, std::pair<int, int>>& begEnd : vecNumbers)
 	{
@@ -83,7 +83,7 @@ long EngAdjancedToStar(std::pair<int, int>& star)
 
 			if (begEnd.first.first == ii && (begEnd.first.second <= jj && begEnd.second.second >= jj))
 			{
-				product *= LongVal(begEnd);
+				product *= long longVal(begEnd);
 				appears++;
 				break;
 			}
@@ -148,11 +148,11 @@ std::string MySolution1()
 	FindNumbers(AnySymbol);
 
 
-	long totSum = 0;
+	long long totSum = 0;
 
 	for (pair<pair<int, int>, pair<int, int>> begEnd : vecNumbers)
 	{
-		totSum += LongVal(begEnd);
+		totSum += long longVal(begEnd);
 	}
 
 	return std::to_string(totSum);
@@ -166,7 +166,7 @@ std::string MySolution2()
 	nOfCol = vec[0].size();
 	FindNumbers(StarSymbol);
 
-	long totSum = 0;
+	long long totSum = 0;
 	for (pair<int, int>& pair : vecStars)
 	{
 		totSum += EngAdjancedToStar(pair);
