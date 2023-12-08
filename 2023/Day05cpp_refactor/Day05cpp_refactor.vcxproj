@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{a8e97be7-fdce-4bb6-861f-8c2abb07e33d}</ProjectGuid>
-    <RootNamespace>Day06cpp</RootNamespace>
+    <ProjectGuid>{64db2ce6-abd0-4302-aa83-6ab0a642f48a}</ProjectGuid>
+    <RootNamespace>Day05cpprefactor</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -129,11 +129,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Day06cpp.cpp" />
+    <ClCompile Include="Day05cpp_refactor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="r.txt" />
     <Text Include="t.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Convertor.h" />
+    <ClInclude Include="Range.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
