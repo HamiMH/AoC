@@ -60,7 +60,7 @@ unordered_map<char, map<pair<int, int>, pair<int, int>>>partDirs =
 
 };
 
-long long AreaOfPOL(vector<PartOfLine>pols)
+long long AreaOfPOL2(vector<PartOfLine>pols)
 {
 	std::sort(pols.begin(), pols.end());
 
@@ -68,38 +68,61 @@ long long AreaOfPOL(vector<PartOfLine>pols)
 
 	long long x = 0;
 	long long y = -1;
+	char ch='0';
 	bool inside = false;
-
+	long long add = 0;
 	for (PartOfLine& pol : pols)
 	{
 		if (pol.Y != y)
 		{
 			y = pol.Y;
 			x = pol.X;
-			inside = pol.ValidBeg;
+			ch = pol.Ch;
+			inside = (pol.Ch == '|');
 			continue;
 		}
-		if (inside)
+
+		if (pol.Ch == 'F' || pol.Ch == 'L')
 		{
-			if (pol.ValidEnd)
+			if (inside)
 			{
-				area += (pol.X - x - 1);
-				inside = false;
+				add = (pol.X - x - 1);
+				if(add>0)
+					area += add;
 			}
+			ch = pol.Ch;
+		}
+		else if (pol.Ch == 'J')
+		{
+			x = pol.X;
+			if (ch == 'F')
+				inside = (!inside);
+		}
+		else if (pol.Ch == '7')
+		{
+			x = pol.X;
+			if (ch == 'L')
+				inside = (!inside);
 		}
 		else
 		{
-			if (pol.ValidBeg)
+
+			if (inside)
 			{
-				x = pol.X;
-				inside = true;;
+				add = (pol.X - x - 1);
+				if (add > 0)
+					area += add;
+				inside = false;
+			}
+			else
+			{
+					x = pol.X;
+					inside = true;;
 			}
 		}
-
 	}
 	return area;
 }
-
 
 long long RunTheMaze2(std::vector<std::string>& vec, pair<int, int> sBegin, pair<int, int> dirOrig)
 {
@@ -130,7 +153,7 @@ long long RunTheMaze2(std::vector<std::string>& vec, pair<int, int> sBegin, pair
 
 
 
-	return AreaOfPOL(pols);
+	return AreaOfPOL2(pols);
 }
 
 int RunTheMaze(std::vector<std::string>& vec, pair<int, int> sBegin, pair<int, int> dir)
