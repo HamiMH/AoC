@@ -10,14 +10,10 @@
 #include <numeric>
 #include <algorithm>
 #include <queue>
-
 using namespace std;
 
 
-map<tuple<int, int, int, int>, int> MEMO;
-vector<vector<map<pair<int, int>, int>>> MEMO2;
 
-vector<vector<int>>lavaMap;
 int minResults = 1000000000;
 int nOfCols;
 int nOfRows;
@@ -37,167 +33,49 @@ vector<pair<int, int>>directs =
 	{0,-1},
 };
 
-const int WRONG = 1000000000;
+vector<vector<int>>lavaMap;
+priority_queue<pair<int, tuple<int,int, int>>, vector<pair<int, tuple<int,int, int>>>, greater<pair<int, tuple<int,int, int>>>>pq;
+vector<vector<vector<int>>>distMap;
 
-
-int NavigateMaze(int x, int y, int prDir, int prSteps)
+void CalculateMaze(int minDist,int maxDist)
 {
-	if (x < 0 || y < 0 || x >= nOfCols || y >= nOfRows)
-		return WRONG;
-
-	if (x == nOfCols - 1 && y == nOfRows - 1)
-		return lavaMap[y][x];
-
-	if (prSteps > 3)
-		return WRONG;
-	if (MEMO.contains({ x, y, prDir, prSteps }))
-		return MEMO[{x, y, prDir, prSteps}];
-
-	int steps;
-	int min = WRONG;
-	int tmp;
-	for (int curDir = 0; curDir < NDIRS; curDir++)
-	{
-		if (curDir == prDir)
-			steps = prSteps + 1;
-		else
-			steps = 1;
-
-		tmp = lavaMap[y][x] + NavigateMaze(x + directs[curDir].first, y + directs[curDir].second, curDir, steps);
-		if (tmp < min)
-			min = tmp;
-	}
-	MEMO[{x, y, prDir, prSteps}] = min;
-	return min;
-}
-
-
-void NavigateMaze2(int x, int y, int prDir, int prSteps, int value)
-{
-	if (x < 0 || y < 0 || x >= nOfCols || y >= nOfRows)
-		return;
-	if (prSteps > 3)
-		return;
-
-	value += lavaMap[y][x];
-
-	for (int i = 1; i <= prSteps; i++)
-	{
-		if (MEMO.contains({ x, y, prDir, i }))
-			if (MEMO[{x, y, prDir, i}] <= value)
-				return;
-	}
-
-	MEMO[{x, y, prDir, prSteps}] = value;
-
-	if (x == nOfCols - 1 && y == nOfRows - 1)
-	{
-		if (minResults > value)
-			minResults = value;
-	}
-
-
-	int steps;
-	int tmp;
-	for (int curDir = 0; curDir < NDIRS; curDir++)
-	{
-		if ((curDir - prDir) == 2 || (curDir - prDir) == -2)
-			continue;
-		if (curDir == prDir)
-			steps = prSteps + 1;
-		else
-			steps = 1;
-
-		NavigateMaze2(x + directs[curDir].first, y + directs[curDir].second, curDir, steps, value);
-	}
-}
-
-
-void NavigateMaze3(int x, int y, int prDir, int prSteps, int value)
-{
-	if (x < 0 || y < 0 || x >= nOfCols || y >= nOfRows)
-		return;
-	if (prSteps > 3)
-		return;
-
-	value += lavaMap[y][x];
-
-	if (x == nOfCols - 1 && y == nOfRows - 1)
-	{
-		if (minResults > value)
-			minResults = value;
-		return;
-	}
-
-
-	int steps;
-	int tmp;
-	bool toSkip;
-
-	for (int curDir = 0; curDir < NDIRS; curDir++)
-	{
-		if ((curDir - prDir) == 2 || (curDir - prDir) == -2)
-			continue;
-		if (curDir == prDir)
-			steps = prSteps + 1;
-		else
-			steps = 1;
-
-		toSkip = false;
-		for (pair<const pair<int, int>,int>& pai : MEMO2[y][x])
-		{
-			const pair<int, int>key = pai.first;
-			int valPair= pai.second;
-
-			if (key.first != curDir ||steps<= key.second)
-			{
-				if (valPair < value)
-				{
-					toSkip = true;
-					break;
-				}
-			}
-		}
-		if (toSkip)
-			continue;
-
-		//MEMO[{x, y, prDir, prSteps}] = value;
-		MEMO2[y][x][{prDir, prSteps}] = value;
-
-		NavigateMaze3(x + directs[curDir].first, y + directs[curDir].second, curDir, steps, value);
-	}
-}
-
-
-priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>>>pq;
-vector<vector<int>>distMap;
-
-void PrecalculateMaze()
-{
-	distMap[nOfRows - 1][nOfCols - 1] = 0;
-	pq.push({ 0,{nOfCols - 1,nOfRows - 1} });
+	distMap[RIGHT][0][0] = 0;
+	distMap[DOWN][0][0] = 0;
+	distMap[LEFT][0][0] = 0;
+	distMap[UP][0][0] = 0;
+	pq.push({ 0,{LEFT,0,0} });
+	pq.push({ 0,{UP,0,0} });
 
 	while (!pq.empty())
 	{
-		const pair<int, pair<int, int>> top = pq.top();
+		const pair<int, tuple<int,int, int>> top = pq.top();
 		pq.pop();
 		int dis = top.first;
-		pair<int, int>coord = top.second;
-		if (dis > distMap[coord.second][coord.first])
+		auto const&[dirCoord,xCoord,yCoord] = top.second;
+		if (dis > distMap[dirCoord][yCoord][xCoord])
 			continue;
 
-		int x, y;
-		for (int curDir = 0; curDir < NDIRS; curDir++)
+		vector<int>dirAfterTurnAllTurns = { (dirCoord + 1 + NDIRS) % NDIRS ,(dirCoord - 1 + NDIRS) % NDIRS };
+		int x, y,efford;
+		for (int dirAfterTurn : dirAfterTurnAllTurns)
 		{
-			x = coord.first + directs[curDir].first;
-			y = coord.second + directs[curDir].second;
-			if (x < 0 || y < 0 || x >= nOfCols || y >= nOfRows)
-				continue;
-
-			if (distMap[coord.second][coord.first] + lavaMap[y][x] < distMap[y][x])
+			x = xCoord;
+			y = yCoord;
+			efford = 0;
+			for (int lenOfSkip = 1; lenOfSkip <= maxDist; lenOfSkip++) 
 			{
-				distMap[y][x] = distMap[coord.second][coord.first] + lavaMap[y][x];
-				pq.push({ distMap[y][x] ,{x,y} });
+				x += directs[dirAfterTurn].first;
+				y += directs[dirAfterTurn].second;
+				if (x < 0 || y < 0 || x >= nOfCols || y >= nOfRows)
+					break;;
+				efford += lavaMap[y][x];
+
+				if (lenOfSkip < minDist)continue;
+				if (distMap[dirCoord][yCoord][xCoord] + efford < distMap[dirAfterTurn][y][x])
+				{
+					distMap[dirAfterTurn][y][x] = distMap[dirCoord][yCoord][xCoord] + efford;
+					pq.push({ distMap[dirAfterTurn][y][x] ,{dirAfterTurn,x,y} });
+				}
 			}
 		}
 	}
@@ -205,10 +83,29 @@ void PrecalculateMaze()
 }
 
 
-std::string MySolution1(std::vector<std::string>& vec)
-{
-	int min = 0;
 
+void OutPutLayout(vector<vector<int>>inputVec)
+{
+	for (vector<int>& vi : inputVec)
+	{
+		for (int i : vi)
+		{
+			cout << i;
+			cout << ",";
+		}
+		cout << endl;
+	}
+	cout << endl;
+	cout << endl;
+	cout << endl;
+
+}
+
+void PreprateMap(std::vector<std::string>& vec)
+{
+	distMap.clear();
+	lavaMap.clear();
+	vector<vector<int>>preDistMap;
 	for (string& s : vec)
 	{
 		vector<int>tmp;
@@ -221,25 +118,39 @@ std::string MySolution1(std::vector<std::string>& vec)
 			tmp3.push_back(1000000000);
 		}
 		lavaMap.push_back(tmp);
-		MEMO2.push_back(tmp2);
-		distMap.push_back(tmp3);
+		preDistMap.push_back(tmp3);
+	}
+
+	for (int i = 0; i < NDIRS; i++)
+	{
+		distMap.push_back(preDistMap);
 	}
 	nOfRows = lavaMap.size();
 	nOfCols = lavaMap.front().size();
+}
+int GetMinimalEndValue()
+{
+	int minV = 1000000000;
+	for (int i = 0; i < NDIRS; i++)
+	{
+		minV = std::min(minV, distMap[i].back().back());
+	}
+	return minV;
+}
 
-	NavigateMaze2(0, 0, START, 0,0);
-	//NavigateMaze3(0, 0, START, 0, 0);
-	PrecalculateMaze();
-
-	return std::to_string(minResults - lavaMap[0][0]);
+std::string MySolution1(std::vector<std::string>& vec)
+{
+	PreprateMap(vec);
+	CalculateMaze(1,3);
+	return std::to_string(GetMinimalEndValue());
 
 }
 
 std::string MySolution2(std::vector<std::string>& vec)
 {
-	int sum = 0;
-
-	return std::to_string(sum);
+	PreprateMap(vec);
+	CalculateMaze(4, 10);
+	return std::to_string(GetMinimalEndValue());
 }
 
 int main()
