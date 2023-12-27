@@ -44,7 +44,7 @@ void ResolveInput(std::vector<string>& vec)
 std::string MySolution1(std::vector<std::string>& vec)
 {
 	long long sum = 0;
-	
+
 	ResolveInput(vec);
 	sum = FindIntersect2D();
 
