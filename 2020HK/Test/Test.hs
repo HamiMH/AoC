@@ -1,4 +1,6 @@
-   
+    
+import System.Directory 
+
 prLines :: (Show int, Show string, Num int, Num a2) => int -> [string] -> IO a2
 prLines i llines=
                   if (not.null) llines 
@@ -16,7 +18,9 @@ prLines i llines=
 
 main :: IO ()
 main = do
-        putStrLn "Hello World"
+        putStrLn "Hello World"        
+        let path =  getCurrentDirectory
+        putStrLn (view path)
         lline<- readFile "in"
         writeFile "out" ""
         let llines=lines lline
