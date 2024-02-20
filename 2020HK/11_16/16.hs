@@ -15,7 +15,7 @@ data Rule = Rule String Int Int Int Int deriving(Eq,Show)
 
 valIsValidByRule value (Rule str a b c d)   | (value>=a) &&  (value <=b)    = True
                                         | (value>=c) &&  (value <=d)    = True
-                                        | otherwise                     = False        
+                                        | otherwise                     = False
 
 
 valIsValidByRules rules value  = any (==True) $ map (valIsValidByRule value) rules
@@ -44,7 +44,16 @@ part1 input=show $ sum filtered
                     filtered=filter (not . (valIsValidByRules listRules)) joined
 
 
-part2 input =show $   0
+
+interme listRules = valIsValidByRules listRules
+
+intermeMap listRules= map (map (interme listRules))
+
+
+--fceRules listNearTickets listRules = map ( map (valIsValidByRules listRules)) listNearTickets
+--fceRules listNearTickets listRules = map (all (==True)) $ map ( map (valIsValidByRules listRules)) listNearTickets
+
+part2 input =show $   listValidTickets
                 where   parts=LiSp.splitOn "\n\n" input
                         listRules=map parseLineToRules (lines $ head parts)
 
@@ -53,7 +62,11 @@ part2 input =show $   0
 
                         listMyTickets=strLineToIntList strPartMyTicket
                         listNearTickets =  map strLineToIntList strPartNearTickets
-                        listValidTickets = filter (all (==True) map (valIsValidByRules listRules) ) listNearTickets
+                        listValidTickets = filter (validateValuesAll ) listNearTickets
+
+                        validateValue=valIsValidByRules listRules
+                        validateValues=map validateValue
+                        validateValuesAll=all id . validateValues
 
 main = do
 
@@ -76,14 +89,14 @@ main = do
 
   startTimeT2 <- Ti.getCurrentTime
   putStrLn "Part2: test"
-  print $ part2  (lines inputTest)
+  print $ part2  ( inputTest)
   endTimeT2 <- Ti.getCurrentTime
   print $ show $ Ti.diffUTCTime endTimeT2 startTimeT2
   print $ "---------------------------------------"
 
   startTimeR2 <- Ti.getCurrentTime
   putStrLn "Part2: real"
-  print $ part2  (lines inputReal)
+  print $ part2  ( inputReal)
   endTimeR2 <- Ti.getCurrentTime
   print $ show $ Ti.diffUTCTime endTimeR2 startTimeR2
   print $ "#######################################"
