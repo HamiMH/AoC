@@ -90,8 +90,7 @@ namespace Day24Cs
                 while ((ln = file.ReadLine()) != null)
                 {
                     vec.Add(ln);
-                }
-                file.Close();
+                }            
             }
 
 
