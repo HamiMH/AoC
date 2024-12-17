@@ -68,7 +68,7 @@ namespace Day17cs
 			long gcd=-1;
 			int index = 1;
 			long diff = 1;
-			long newA = 19878166004L;
+			long newA = 1L;
 			while(true)
 			{
 				RegisterCombo = new List<long>(backUpCombo);
