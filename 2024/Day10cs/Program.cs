@@ -38,7 +38,8 @@ namespace Day10cs
 		}
 		private static string GetResult1(List<string> inputCol)
 		{
-			return "";
+			ClimberTrail climberTrail=new ClimberTrail(inputCol);
+			return climberTrail.NumbOfTrails().ToString();
 		}
 
 		private static string GetResult2(List<string> inputCol)

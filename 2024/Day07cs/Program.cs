@@ -38,12 +38,24 @@ namespace Day07cs
 		}
 		private static string GetResult1(List<string> inputCol)
 		{
-			return "";
+			long sum = 0;
+			foreach (string col in inputCol)
+			{
+				LineTester lt = new LineTester(col);
+				sum += lt.GetResult2Types();
+			}
+			return sum.ToString();
 		}
 
 		private static string GetResult2(List<string> inputCol)
 		{
-			return "";
+			long sum = 0;
+			foreach (string col in inputCol)
+			{
+				LineTester lt = new LineTester(col);
+				sum += lt.GetResult3Types();
+			}
+			return sum.ToString();
 		}
 	}
 }

@@ -85,7 +85,7 @@ internal class Grid
 
 		while (true)
 		{
-			if (!MakeMove())
+			if (!CheckMove())
 				break;
 
 			if (_grid[_guard.Y][_guard.X] == 0)
@@ -94,7 +94,6 @@ internal class Grid
 
 			_guard.Move();
 		}
-		//PrintGrid();
 		return nOfSteps + 1;
 	}
 
@@ -104,7 +103,7 @@ internal class Grid
 		Guard guard = new Guard();
 		while (true)
 		{
-			if (!MakeMove())
+			if (!CheckMove())
 				break;
 			int guardNextX = _guard.X + _guard.Direct.Item1;
 			int guardNextY = _guard.Y + _guard.Direct.Item2;
@@ -123,9 +122,7 @@ internal class Grid
 
 			_guard.Move();
 		}
-		//PrintGrid();
 		return nOfCirles;
-		//return correctPlacement.Count;
 	}
 
 	private bool TestCircle(Guard guard)
@@ -133,7 +130,7 @@ internal class Grid
 		HashSet<Tuple<int, int, int>> visited = new HashSet<Tuple<int, int, int>>();
 		while (true)
 		{
-			if (!MakeMove())
+			if (!CheckMove())
 				break;
 
 			if (visited.Contains(Tuple.Create(guard.X, guard.Y, guard.DirecId)))
@@ -144,17 +141,5 @@ internal class Grid
 		}
 
 		return false;
-	}
-
-	public void PrintGrid()
-	{
-		for (int i = 0; i < _grid.Count; i++)
-		{
-			for (int j = 0; j < _grid.First().Count; j++)
-			{
-				Console.Write($"{_grid[i][j],3}");
-			}
-			Console.WriteLine();
-		}
 	}
 }

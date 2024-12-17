@@ -36,14 +36,19 @@ namespace Day08cs
 			Console.WriteLine(result2);
 			Console.WriteLine("Time was: " + sw.ElapsedMilliseconds + " ms.");
 		}
+
 		private static string GetResult1(List<string> inputCol)
 		{
-			return "";
+			AntinodeCalculator ac = new AntinodeCalculator(inputCol);
+
+			return ac.GetNumberOfAntipoles().ToString();
 		}
 
 		private static string GetResult2(List<string> inputCol)
 		{
-			return "";
+			AntinodeCalculator ac = new AntinodeCalculator(inputCol);
+
+			return ac.GetNumberOfAntipoles2().ToString();
 		}
 	}
 }

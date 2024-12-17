@@ -38,12 +38,33 @@ namespace Day09cs
 		}
 		private static string GetResult1(List<string> inputCol)
 		{
-			return "";
+
+			PrintInputStats(inputCol);
+
+			DiskMap diskMap = new DiskMap(inputCol);
+			diskMap.RunCompression();
+			return diskMap.CheckSum().ToString();
+		}
+
+		private static void PrintInputStats(List<string> inputCol)
+		{
+			string s = inputCol.First();
+			long sum = 0;
+			for (int i = 0; i < s.Length; i++)
+			{
+				sum += s[i] - '0';
+			}
+			Console.WriteLine("Sum of all numbers in the first line: " + sum);
+			Console.WriteLine("Length of input: " + inputCol.First().Length);
+
 		}
 
 		private static string GetResult2(List<string> inputCol)
 		{
-			return "";
+
+			DiskMap2 diskMap = new DiskMap2(inputCol);
+			diskMap.RunCompression();
+			return diskMap.CheckSum().ToString();
 		}
 	}
 }
