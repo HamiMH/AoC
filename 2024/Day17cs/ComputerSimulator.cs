@@ -103,7 +103,7 @@ namespace Day17cs
 					gcd = GCD(gcd, newA - results.Last());
 				}
 				results.Add(newA);
-				if(results.Count>30)
+				if(results.Count>10)
 				{
 					results.Clear();
 					difs.Clear();

@@ -5,45 +5,47 @@ namespace Day19cs
 	internal class Program
 	{
 		static void Main(string[] args)
+		{
+			List<string> inputCol = new List<string>();
+			string inp = Console.ReadLine();
+			using (StreamReader file = new StreamReader("..\\..\\..\\" + inp + ".txt"))
 			{
-				List<string> inputCol = new List<string>();
-				string inp = Console.ReadLine();
-				using (StreamReader file = new StreamReader("..\\..\\..\\" + inp + ".txt"))
+				string? ln;
+
+				while ((ln = file.ReadLine()) != null)
 				{
-					string? ln;
-
-					while ((ln = file.ReadLine()) != null)
-					{
-						inputCol.Add(ln);
-					}
+					inputCol.Add(ln);
 				}
-				Stopwatch sw = new Stopwatch();
-				sw.Start();
-				string result1 = GetResult1(inputCol);
-				sw.Stop();
-				Console.WriteLine("Result 1:"); ;
-				Console.WriteLine(result1);
-				Console.WriteLine("Time was: " + sw.ElapsedMilliseconds + " ms.");
-
-				Console.WriteLine("");
-				Console.WriteLine("");
-
-				sw.Reset();
-				sw.Start();
-				string result2 = GetResult2(inputCol);
-				sw.Stop();
-				Console.WriteLine("Result 2:"); ;
-				Console.WriteLine(result2);
-				Console.WriteLine("Time was: " + sw.ElapsedMilliseconds + " ms.");
 			}
-			private static string GetResult1(List<string> inputCol)
-			{
-				return "";
-			}
+			Stopwatch sw = new Stopwatch();
+			sw.Start();
+			string result1 = GetResult1(inputCol);
+			sw.Stop();
+			Console.WriteLine("Result 1:"); ;
+			Console.WriteLine(result1);
+			Console.WriteLine("Time was: " + sw.ElapsedMilliseconds + " ms.");
 
-			private static string GetResult2(List<string> inputCol)
-			{
-				return "";
-			}
+			Console.WriteLine("");
+			Console.WriteLine("");
+
+			sw.Reset();
+			sw.Start();
+			string result2 = GetResult2(inputCol);
+			sw.Stop();
+			Console.WriteLine("Result 2:"); ;
+			Console.WriteLine(result2);
+			Console.WriteLine("Time was: " + sw.ElapsedMilliseconds + " ms.");
 		}
+		private static string GetResult1(List<string> inputCol)
+		{
+			LinenResolver linenResolver = new LinenResolver(inputCol);
+			return linenResolver.Combinations().Count(x => x>0).ToString();
+		}
+
+		private static string GetResult2(List<string> inputCol)
+		{
+			LinenResolver linenResolver = new LinenResolver(inputCol);
+			return linenResolver.Combinations().Sum().ToString();
+		}
+	}
 }
