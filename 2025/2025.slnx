@@ -1,3 +1,8 @@
 <Solution>
   <Project Path="Day01cs/Day01cs.csproj" />
+  <Project Path="Day02cs/Day02cs.csproj" Id="5be4a2ab-4929-43ce-8440-05c058e96be3" />
+  <Project Path="Day03cs/Day03cs.csproj" Id="2123e30f-2b90-463c-a3e2-13316c2b91ea" />
+  <Project Path="Day04cs/Day04cs.csproj" Id="fc2b17e3-90bb-433b-90b0-694563805138" />
+  <Project Path="Day05cs/Day05cs.csproj" Id="e0579c3a-9a01-44d3-b012-6797e9184534" />
+  <Project Path="Day06cs/Day06cs.csproj" Id="8cf252a3-9d3d-4596-872b-77fc62ea926e" />
 </Solution>
