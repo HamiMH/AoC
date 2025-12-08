@@ -1,14 +1,14 @@
 <Solution>
-  <Project Path="D:/GIT/AoC/2025/Day01cs/Day01cs.csproj" />
-  <Project Path="D:/GIT/AoC/2025/Day02cs/Day02cs.csproj" Id="5be4a2ab-4929-43ce-8440-05c058e96be3" />
-  <Project Path="D:/GIT/AoC/2025/Day03cs/Day03cs.csproj" Id="2123e30f-2b90-463c-a3e2-13316c2b91ea" />
-  <Project Path="D:/GIT/AoC/2025/Day04cs/Day04cs.csproj" Id="fc2b17e3-90bb-433b-90b0-694563805138" />
-  <Project Path="D:/GIT/AoC/2025/Day05cs/Day05cs.csproj" Id="e0579c3a-9a01-44d3-b012-6797e9184534" />
-  <Project Path="D:/GIT/AoC/2025/Day06cs/Day06cs.csproj" Id="8cf252a3-9d3d-4596-872b-77fc62ea926e" />
-  <Project Path="D:/GIT/AoC/2025/Day07cs/Day07cs.csproj" Id="de01827a-107e-454c-819f-01919934b991" />
-  <Project Path="D:/GIT/AoC/2025/Day08cs/Day08cs.csproj" Id="36fef22b-2140-4ef8-8da5-814e74598970" />
-  <Project Path="D:/GIT/AoC/2025/Day09cs/Day09cs.csproj" Id="ec597d6f-b611-48d0-8ba3-4ea8e0bb834d" />
-  <Project Path="D:/GIT/AoC/2025/Day10cs/Day10cs.csproj" Id="e30b46a6-2a7a-4556-9ae5-ea55085eb181" />
-  <Project Path="D:/GIT/AoC/2025/Day11cs/Day11cs.csproj" Id="9865fb6a-7e59-4b28-9026-88c173f22275" />
-  <Project Path="D:/GIT/AoC/2025/Day12cs/Day12cs.csproj" Id="da25a1e5-69df-410c-8bd2-936fd77bd712" />
+  <Project Path="Day01cs/Day01cs.csproj" />
+  <Project Path="Day02cs/Day02cs.csproj" Id="5be4a2ab-4929-43ce-8440-05c058e96be3" />
+  <Project Path="Day03cs/Day03cs.csproj" Id="2123e30f-2b90-463c-a3e2-13316c2b91ea" />
+  <Project Path="Day04cs/Day04cs.csproj" Id="fc2b17e3-90bb-433b-90b0-694563805138" />
+  <Project Path="Day05cs/Day05cs.csproj" Id="e0579c3a-9a01-44d3-b012-6797e9184534" />
+  <Project Path="Day06cs/Day06cs.csproj" Id="8cf252a3-9d3d-4596-872b-77fc62ea926e" />
+  <Project Path="Day07cs/Day07cs.csproj" Id="de01827a-107e-454c-819f-01919934b991" />
+  <Project Path="Day08cs/Day08cs.csproj" Id="36fef22b-2140-4ef8-8da5-814e74598970" />
+  <Project Path="Day09cs/Day09cs.csproj" Id="ec597d6f-b611-48d0-8ba3-4ea8e0bb834d" />
+  <Project Path="Day10cs/Day10cs.csproj" Id="e30b46a6-2a7a-4556-9ae5-ea55085eb181" />
+  <Project Path="Day11cs/Day11cs.csproj" Id="9865fb6a-7e59-4b28-9026-88c173f22275" />
+  <Project Path="Day12cs/Day12cs.csproj" Id="da25a1e5-69df-410c-8bd2-936fd77bd712" />
 </Solution>
