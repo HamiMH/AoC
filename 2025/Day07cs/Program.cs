@@ -41,12 +41,78 @@ internal class Program
     private static string GetResult1(List<string> inputCol)
     {
         long sum = 0;
+        int colLen = inputCol.First().Length;
+        HashSet<int> set = new();
+        for (int i = 0; i < colLen; i++)
+        {
+            if (inputCol.First()[i] == 'S')
+                set.Add(i);
+        }
+
+        foreach (string line in inputCol)
+        {
+            HashSet<int> setToAdd = new();
+
+            foreach (int ind in set)
+            {
+                if (line[ind] == '^')
+                {
+                    sum++;
+                    set.Remove(ind);
+                    setToAdd.Add(ind-1);
+                    setToAdd.Add(ind+1);
+                }
+            }
+            set.UnionWith(setToAdd);
+        }
+
         return sum.ToString();
     }
     private static string GetResult2(List<string> inputCol)
     {
         long sum = 0;
-        return sum.ToString();
+        int colLen = inputCol.First().Length;
+        Dictionary<int,long> dict = new();
+
+        for (int i = 0; i < colLen; i++)
+        {
+            if (inputCol.First()[i] == 'S')
+                dict[i] = 1;
+        }
+
+        foreach (string line in inputCol)
+        {
+            Dictionary<int,long> tmpDict= new();
+
+            foreach (var pair in dict)
+            {
+                if (line[pair.Key] == '^')
+                {
+                    if (!tmpDict.ContainsKey(pair.Key - 1))
+                    {
+                        tmpDict[pair.Key - 1] = 0;
+                    }
+                    tmpDict[pair.Key - 1] += pair.Value;
+
+                    if (!tmpDict.ContainsKey(pair.Key + 1))
+                    {
+                        tmpDict[pair.Key + 1] = 0;
+                    }
+                    tmpDict[pair.Key + 1] += pair.Value;
+                }
+                else
+                {
+                    if (!tmpDict.ContainsKey(pair.Key))
+                    {
+                        tmpDict[pair.Key] = 0;
+                    }
+                    tmpDict[pair.Key] += pair.Value;
+                }
+            }
+            dict = tmpDict;
+        }
+
+        return dict.Values.Sum().ToString();
     }
 }
 
