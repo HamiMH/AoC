@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="alglib.net" Version="3.19.0" />
+    <PackageReference Include="LpSolveDotNet" Version="4.1.0" />
+    <PackageReference Include="LpSolveDotNet.Native.win-x64" Version="4.1.0" />
+  </ItemGroup>
+
 </Project>
