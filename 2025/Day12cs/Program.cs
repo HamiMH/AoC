@@ -41,8 +41,42 @@ internal class Program
     private static string GetResult1(List<string> inputCol)
     {
         long sum = 0;
+        List<Shape> shapes = new List<Shape>();
+        List<Space> spaces = new List<Space>();
+        LoadInput(inputCol,shapes,spaces);
+        foreach(Shape shape in shapes) shape.Init();
         return sum.ToString();
     }
+
+    private static void LoadInput(List<string> inputCol, List<Shape> shapes, List<Space> spaces)
+    {
+        Shape currShape=null;
+        foreach (string line in inputCol)
+        {
+            if (string.IsNullOrEmpty(line))
+            {
+                shapes.Add(currShape);
+                continue;
+            }
+            if (line[1] == ':')
+            {
+                currShape = new Shape();
+                continue;
+            }
+            if (line.Contains('.') || line.Contains('#'))
+            {
+                currShape.AddLine(line);
+                continue;
+            }
+            if (line.Contains('x'))
+                {
+                Space sp = new Space(line);
+                spaces.Add(sp);
+                continue;
+            }
+        }
+    }
+
     private static string GetResult2(List<string> inputCol)
     {
         long sum = 0;
