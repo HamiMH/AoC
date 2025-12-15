@@ -45,12 +45,40 @@ internal class Program
         List<Space> spaces = new List<Space>();
         LoadInput(inputCol,shapes,spaces);
         foreach(Shape shape in shapes) shape.Init();
+        
+        ResolveHeuristics(shapes, spaces);
+        
+        foreach(Space sp in spaces)
+        {
+            Console.WriteLine(sp.Line);
+            long res= sp.ResolveSpace(shapes);
+            Console.WriteLine(res);
+            sum += res;
+        }
+
         return sum.ToString();
+    }
+
+    private static void ResolveHeuristics(List<Shape> shapes, List<Space> spaces)
+    {
+        long[]arr= new long[10];
+        foreach (Space sp in spaces)
+        {
+            Console.WriteLine(sp.Line);
+            long type = sp.ResolveHeuristicSpace(shapes);
+            arr[type]++;
+        }
+        foreach (long v in arr)
+        {
+            Console.Write(v+", ");
+        }
+        Console.WriteLine();
     }
 
     private static void LoadInput(List<string> inputCol, List<Shape> shapes, List<Space> spaces)
     {
         Shape currShape=null;
+        int index = 0;
         foreach (string line in inputCol)
         {
             if (string.IsNullOrEmpty(line))
@@ -60,7 +88,8 @@ internal class Program
             }
             if (line[1] == ':')
             {
-                currShape = new Shape();
+                currShape = new Shape(index);
+                index++;
                 continue;
             }
             if (line.Contains('.') || line.Contains('#'))

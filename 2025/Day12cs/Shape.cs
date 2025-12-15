@@ -7,8 +7,15 @@ namespace Day12cs
     internal class Shape
     {
         public List<string> Rows { get; } = new List<string>();
+        public int Index { get; }
 
         public List <List <string>> Variants= new List<List <string>> ();
+        public int Size = 0;
+
+        public Shape(int index)
+        {
+            Index = index;
+        }
 
         internal void AddLine(string line)
         {
@@ -17,6 +24,10 @@ namespace Day12cs
 
         public void Init()
         {
+            foreach (string row in Rows)
+            {
+                Size += row.Count(c => c == '#');
+            }
             Variants.Clear ();
             AddVariant(Rows);
             AddVariant(Flip(Rows));
